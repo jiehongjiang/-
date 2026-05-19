@@ -4,24 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>专业电脑配置单</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-primary: #0a0e17;
-            --bg-secondary: #111827;
-            --bg-card: #1a1f2e;
-            --bg-card-hover: #232a3d;
-            --accent-primary: #6366f1;
-            --accent-secondary: #8b5cf6;
-            --accent-glow: rgba(99, 102, 241, 0.4);
-            --text-primary: #f1f5f9;
-            --text-secondary: #94a3b8;
-            --text-muted: #64748b;
-            --border-color: rgba(255, 255, 255, 0.08);
-            --success: #10b981;
-            --warning: #f59e0b;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -29,164 +12,240 @@
         }
 
         body {
-            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-primary);
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0c0c1e 0%, #1a1a3e 45%, #0f1729 100%);
             min-height: 100vh;
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 24px;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 48px;
-            animation: fadeInDown 0.6s ease-out;
-        }
-
-        .header-icon {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 20px;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            box-shadow: 0 8px 32px var(--accent-glow);
-        }
-
-        .header h1 {
-            font-size: 32px;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 8px;
-        }
-
-        .header-subtitle {
-            color: var(--text-muted);
-            font-size: 14px;
-            font-weight: 400;
-        }
-
-        .config-section {
-            background: var(--bg-card);
-            border-radius: 24px;
-            padding: 32px;
-            margin-bottom: 32px;
-            border: 1px solid var(--border-color);
-            animation: fadeIn 0.6s ease-out 0.1s both;
-        }
-
-        .section-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .section-title::before {
-            content: '';
-            width: 4px;
-            height: 20px;
-            background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary));
-            border-radius: 2px;
-        }
-
-        .config-grid {
-            display: grid;
-            gap: 16px;
-        }
-
-        .config-item {
-            display: grid;
-            grid-template-columns: 100px 1fr;
-            gap: 20px;
-            align-items: center;
-            padding: 16px 20px;
-            background: var(--bg-secondary);
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        .config-item:hover {
-            background: var(--bg-card-hover);
-            border-color: rgba(99, 102, 241, 0.2);
-            transform: translateX(4px);
-        }
-
-        .config-item.required {
-            border-left: 3px solid var(--accent-primary);
-        }
-
-        .config-item.optional {
-            border-left: 3px solid var(--text-muted);
-        }
-
-        .config-label {
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--text-secondary);
-        }
-
-        .config-label .badge {
-            display: inline-block;
-            font-size: 10px;
-            padding: 2px 6px;
-            background: rgba(99, 102, 241, 0.2);
-            color: var(--accent-primary);
-            border-radius: 4px;
-            margin-left: 8px;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        .select-wrapper {
+            padding: 0;
+            margin: 0;
+            overflow-x: hidden;
             position: relative;
         }
 
-        .search-select-trigger {
+        body::before {
+            content: '';
+            position: fixed;
+            top: -20%;
+            left: -20%;
+            width: 140%;
+            height: 140%;
+            background: radial-gradient(circle at 20% 20%, rgba(102, 126, 234, 0.18), transparent 24%), radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.12), transparent 18%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -10%;
+            right: -15%;
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle at 80% 90%, rgba(255, 205, 86, 0.14), transparent 26%), radial-gradient(circle at 60% 50%, rgba(56, 185, 255, 0.08), transparent 25%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
             width: 100%;
-            padding: 14px 20px;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            background: var(--bg-card);
-            color: var(--text-secondary);
+            max-width: 100%;
+            margin: 0;
+            padding: 18px;
+            animation: fadeIn 0.6s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(10%, 10%); }
+        }
+
+        header h1 {
+            color: white;
+            font-size: 28px;
+            font-weight: 700;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+            letter-spacing: 2px;
+        }
+
+        .config-table {
+            background: rgba(255,255,255,0.03);
+            border-radius: 16px;
+            overflow: visible;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.05);
+            position: relative;
+            z-index: 1;
+        }
+
+        .table-header {
+            display: grid;
+            grid-template-columns: 70px 1fr 60px;
+            background: linear-gradient(90deg, #00d2ff 0%, #3a7bd5 50%, #667eea 100%);
+            padding: 15px 10px;
+            font-weight: 600;
+            color: white;
             font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .table-header > div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 70px 1fr 60px;
+            min-height: 64px;
+            padding: 10px 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+        }
+
+        .table-row:hover {
+            background: rgba(255,255,255,0.03);
+        }
+
+        .type-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 52px;
+            height: 52px;
+            padding: 0 14px;
+            border-radius: 14px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.25);
+            position: relative;
+        }
+
+        .table-row.required .type-badge::after {
+            content: '必选';
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: rgba(255, 84, 145, 0.95);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 999px;
+            box-shadow: 0 0 14px rgba(255, 84, 145, 0.3);
+        }
+
+        .searchable-select {
+            position: relative;
+            width: 100%;
+            padding: 0 5px;
+            z-index: 10;
+        }
+
+        .select-trigger {
+            width: 100%;
+            height: 52px;
+            padding: 0 50px 0 18px;
+            background: rgba(255,255,255,0.09);
+            border: 2px solid rgba(255,255,255,0.18);
+            border-radius: 14px;
+            color: rgba(255,255,255,0.95);
+            font-size: 15px;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
         }
 
-        .search-select-trigger:hover {
-            border-color: var(--accent-primary);
-            background: var(--bg-card-hover);
+        .quantity-input {
+            width: 60px;
+            height: 52px;
+            padding: 0 12px;
+            background: rgba(255,255,255,0.08);
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 14px;
+            color: white;
+            font-size: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            appearance: none;
+            -moz-appearance: textfield;
         }
 
-        .search-select-trigger.selected {
-            color: var(--text-primary);
-            border-color: var(--accent-primary);
-            background: rgba(99, 102, 241, 0.1);
+        .select-trigger span:first-child {
+            display: inline-block;
+            width: calc(100% - 24px);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .select-trigger:hover {
+            border-color: rgba(102, 126, 234, 0.5);
+            background: rgba(255,255,255,0.12);
+        }
+
+        .select-trigger:focus {
+            outline: none;
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.15);
+            box-shadow: 0 0 30px rgba(102, 126, 234, 0.3);
         }
 
         .select-arrow {
-            font-size: 10px;
-            color: var(--text-muted);
+            width: 0;
+            height: 0;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-top: 7px solid white;
             transition: transform 0.3s ease;
+            filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
+            position: absolute;
+            right: 15px;
         }
 
         .select-arrow.open {
@@ -194,698 +253,649 @@
         }
 
         .select-dropdown {
-            position: absolute;
-            top: calc(100% + 8px);
-            left: 0;
-            right: 0;
-            background: var(--bg-card);
+            position: fixed;
+            background: #14142b;
             border-radius: 16px;
-            border: 1px solid var(--accent-primary);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px var(--accent-glow);
-            z-index: 1000;
-            display: none;
+            border: 2px solid #667eea;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            max-height: 320px;
             overflow: hidden;
+            z-index: 99999;
+            display: none;
+            animation: slideDown 0.15s ease;
+            opacity: 1;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 1; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .select-dropdown.open {
             display: block;
-            animation: dropdownIn 0.2s ease-out;
+            pointer-events: auto;
         }
 
         .search-input {
             width: 100%;
             padding: 16px 20px;
             border: none;
-            border-bottom: 1px solid var(--border-color);
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            font-size: 14px;
-            outline: none;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            background: transparent;
+            color: white;
+            font-size: 15px;
         }
 
         .search-input::placeholder {
-            color: var(--text-muted);
+            color: rgba(255,255,255,0.4);
         }
 
-        .search-results {
-            max-height: 280px;
+        .search-input:focus {
+            outline: none;
+        }
+
+        .select-options {
+            max-height: 250px;
             overflow-y: auto;
         }
 
-        .search-item {
+        .select-options::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .select-options::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .select-options::-webkit-scrollbar-thumb {
+            background: rgba(102, 126, 234, 0.5);
+            border-radius: 4px;
+        }
+
+        .select-option {
             padding: 14px 20px;
+            color: white;
+            font-size: 14px;
             cursor: pointer;
-            border-bottom: 1px solid var(--border-color);
-            transition: all 0.2s ease;
+            transition: background 0.15s ease;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .search-item:last-child {
-            border-bottom: none;
+        .select-option:hover {
+            background: rgba(102, 126, 234, 0.25);
         }
 
-        .search-item:hover {
-            background: rgba(99, 102, 241, 0.15);
+        .select-option.selected {
+            background: rgba(102, 126, 234, 0.4);
         }
 
-        .search-item.selected {
-            background: rgba(99, 102, 241, 0.2);
-        }
-
-        .search-item-name {
-            color: var(--text-primary);
-            font-size: 14px;
-        }
-
-        .search-item-price {
-            color: var(--success);
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .summary-section {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
-            border-radius: 24px;
-            padding: 32px;
-            margin-bottom: 32px;
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            animation: fadeIn 0.6s ease-out 0.2s both;
-        }
-
-        .summary-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-            margin-bottom: 24px;
-        }
-
-        .summary-item {
-            text-align: center;
-            padding: 20px;
-            background: var(--bg-card);
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-        }
-
-        .summary-item.highlight {
-            grid-column: span 2;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            border: none;
-        }
-
-        .summary-label {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-        }
-
-        .summary-value {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .summary-item.highlight .summary-label {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .summary-item.highlight .summary-value {
-            font-size: 36px;
-            color: #fff;
-        }
-
-        .discount-row {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        .discount-row input {
-            width: 200px;
-            padding: 14px 20px;
-            border: 1px solid var(--border-color);
+        .quantity-input {
+            width: 60px;
+            padding: 10px 8px;
+            background: rgba(255,255,255,0.08);
+            border: 2px solid rgba(255,255,255,0.15);
             border-radius: 12px;
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            font-size: 14px;
+            color: white;
+            font-size: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            appearance: none;
+            -moz-appearance: textfield;
+        }
+
+        .quantity-input::-webkit-outer-spin-button,
+        .quantity-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .quantity-input:focus {
             outline: none;
-            text-align: center;
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.15);
         }
 
-        .discount-row input:focus {
-            border-color: var(--accent-primary);
+        .total-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.18) 0%, rgba(118, 75, 162, 0.18) 100%);
+            border-radius: 24px;
+            padding: 18px 22px;
+            margin-top: 25px;
+            box-shadow: 0 30px 90px rgba(0,0,0,0.45);
+            border: 1px solid rgba(255,255,255,0.14);
+            position: relative;
+            overflow: hidden;
         }
 
-        .discount-label {
-            color: var(--text-secondary);
+        .total-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px 0;
+        }
+
+        .total-note {
+            margin-top: 8px;
+            color: rgba(255,255,255,0.65);
             font-size: 14px;
-        }
-
-        .rule-hint {
             text-align: center;
-            font-size: 12px;
-            color: var(--text-muted);
-            padding-top: 20px;
-            border-top: 1px solid var(--border-color);
+            letter-spacing: 0.5px;
         }
 
-        .buttons {
+        .total-label {
+            color: rgba(255,255,255,0.9);
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .total-value {
+            color: #ffd700;
+            font-size: 36px;
+            font-weight: 700;
+            margin-left: 20px;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+        }
+
+        .total-value.waiting {
+            color: rgba(255,255,255,0.5);
+            font-size: 20px;
+            text-shadow: none;
+        }
+
+        .action-buttons {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-            animation: fadeIn 0.6s ease-out 0.3s both;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
         }
 
         .btn {
-            padding: 16px 24px;
+            padding: 16px 30px;
             border: none;
-            border-radius: 14px;
-            font-size: 14px;
+            border-radius: 16px;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            color: #fff;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 40px var(--accent-glow);
-        }
-
-        .btn-success {
-            background: linear-gradient(135deg, var(--success), #059669);
-            color: #fff;
-        }
-
-        .btn-success:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 40px rgba(16, 185, 129, 0.4);
-        }
-
-        .btn-warning {
-            background: linear-gradient(135deg, var(--warning), #d97706);
-            color: #fff;
-        }
-
-        .btn-warning:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 40px rgba(245, 158, 11, 0.4);
-        }
-
-        .btn-secondary {
-            background: var(--bg-card);
-            color: var(--text-secondary);
-            border: 1px solid var(--border-color);
-        }
-
-        .btn-secondary:hover {
-            background: var(--bg-card-hover);
-            color: var(--text-primary);
-        }
-
-        .saved-section {
-            margin-top: 32px;
-            animation: fadeIn 0.6s ease-out 0.4s both;
-        }
-
-        .saved-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .saved-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .saved-title::before {
+        .btn::before {
             content: '';
-            width: 4px;
-            height: 20px;
-            background: linear-gradient(180deg, var(--success), #059669);
-            border-radius: 2px;
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            transition: left 0.5s ease;
         }
 
-        .saved-count {
-            font-size: 12px;
-            padding: 4px 12px;
-            background: var(--bg-card);
-            border-radius: 20px;
-            color: var(--text-muted);
+        .btn:hover::before {
+            left: 100%;
         }
 
-        .saved-list {
-            display: grid;
+        .btn:hover {
+            transform: translateY(-4px);
+        }
+
+        .btn:active {
+            transform: translateY(-2px);
+        }
+
+        .btn-clear {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-clear:hover {
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
+        }
+
+        .btn-screenshot {
+            background: linear-gradient(135deg, #ff00ff 0%, #2be4ff 45%, #00ff95 100%);
+            color: white;
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.35), 0 0 18px rgba(0, 229, 255, 0.2);
+            border: 1px solid rgba(255,255,255,0.25);
+            text-shadow: 0 0 12px rgba(255,255,255,0.4);
+        }
+
+        .btn-screenshot:hover {
+            box-shadow: 0 0 45px rgba(255, 0, 255, 0.45), 0 0 26px rgba(0, 229, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .btn-wholesale {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+        }
+
+        .btn-wholesale:hover {
+            box-shadow: 0 12px 35px rgba(79, 172, 254, 0.5);
+        }
+
+        .btn-save {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: #1a1a2e;
+            box-shadow: 0 8px 25px rgba(67, 233, 123, 0.4);
+        }
+
+        .btn-save:hover {
+            box-shadow: 0 12px 35px rgba(67, 233, 123, 0.5);
+        }
+
+        .saved-configs {
+            background: rgba(255,255,255,0.03);
+            border-radius: 24px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .saved-configs h3 {
+            color: white;
+            font-size: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
             gap: 12px;
         }
 
-        .config-card {
+        .no-saved {
+            text-align: center;
+            color: rgba(255,255,255,0.4);
+            padding: 50px;
+            font-size: 16px;
+        }
+
+        .saved-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 14px;
+            padding: 18px 20px;
+            margin-bottom: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 24px;
-            background: var(--bg-card);
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
             transition: all 0.3s ease;
         }
 
-        .config-card:hover {
-            background: var(--bg-card-hover);
-            border-color: rgba(99, 102, 241, 0.2);
+        .saved-item:hover {
+            background: rgba(255,255,255,0.08);
+            transform: scale(1.02);
         }
 
-        .config-card-info {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
+        .saved-item span {
+            color: white;
+            font-size: 15px;
         }
 
-        .config-card-name {
+        .saved-item button {
+            background: rgba(245, 87, 108, 0.3);
+            border: none;
+            padding: 10px 18px;
+            border-radius: 10px;
+            color: #f5576c;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: 10px;
             font-size: 14px;
             font-weight: 500;
-            color: var(--text-primary);
         }
 
-        .config-card-date {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        .config-card-total {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--success);
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 48px 24px;
-            background: var(--bg-card);
-            border-radius: 16px;
-            border: 1px dashed var(--border-color);
-        }
-
-        .empty-state-icon {
-            font-size: 48px;
-            margin-bottom: 16px;
-            opacity: 0.5;
-        }
-
-        .empty-state-text {
-            color: var(--text-muted);
-            font-size: 14px;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes dropdownIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .saved-item button:hover {
+            background: rgba(245, 87, 108, 0.5);
+            transform: scale(1.05);
         }
 
         @media (max-width: 768px) {
+            body {
+                padding: 0;
+                margin: 0;
+            }
+
             .container {
-                padding: 24px 16px;
+                padding: 10px;
             }
 
-            .header h1 {
-                font-size: 24px;
+            header {
+                padding: 15px;
             }
 
-            .config-section {
-                padding: 20px;
+            header h1 {
+                font-size: 20px;
             }
 
-            .config-item {
-                grid-template-columns: 1fr;
-                gap: 12px;
+            .table-header {
+                grid-template-columns: 60px 1fr 50px;
+                font-size: 12px;
+                padding: 12px 8px;
             }
 
-            .config-label {
+            .table-row {
+                grid-template-columns: 60px 1fr 50px;
+                padding: 10px 8px;
+            }
+
+            .type-badge {
+                padding: 6px 8px;
+                font-size: 10px;
+            }
+
+            .select-trigger {
+                padding: 10px 35px 10px 10px;
                 font-size: 13px;
             }
-
-            .summary-grid {
-                grid-template-columns: 1fr;
+            
+            .select-arrow {
+                right: 10px;
             }
 
-            .summary-item.highlight {
-                grid-column: span 1;
+            .quantity-input {
+                width: 40px;
+                padding: 6px 4px;
+                font-size: 12px;
             }
 
-            .buttons {
-                grid-template-columns: repeat(2, 1fr);
+            .total-section {
+                padding: 8px 12px;
             }
 
-            .discount-row {
-                flex-direction: column;
+            .total-value {
+                font-size: 22px;
             }
 
-            .discount-row input {
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .buttons {
-                grid-template-columns: 1fr;
+            .total-value.waiting {
+                font-size: 14px;
             }
 
-            .summary-value {
-                font-size: 24px;
+            .btn {
+                padding: 12px 16px;
+                font-size: 13px;
             }
-
-            .summary-item.highlight .summary-value {
-                font-size: 28px;
-            }
-        }
-
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-secondary);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent-primary);
-            border-radius: 3px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <div class="header-icon">⚡</div>
-            <h1>专业电脑配置单</h1>
-            <p class="header-subtitle">选择配件，自动计算总价与利润</p>
-        </div>
+        <header>
+            <h1>⚡ 专业电脑配置单</h1>
+        </header>
 
-        <div class="config-section">
-            <h2 class="section-title">核心配置</h2>
-            <div class="config-grid">
-                <div class="config-item required">
-                    <span class="config-label">CPU</span>
-                    <div class="select-wrapper">
-                        <div class="search-select-trigger" data-category="cpu">
-                            <span class="selected-text">请选择CPU</span>
-                            <span class="select-arrow">▼</span>
-                        </div>
-                        <div class="select-dropdown">
-                            <input type="text" class="search-input" placeholder="搜索产品...">
-                            <div class="search-results"></div>
-                        </div>
-                        <input type="hidden" class="selected-value" value="">
+        <div class="config-table">
+            <div class="table-header">
+                <div>类型</div>
+                <div>硬件名称</div>
+                <div>数量</div>
+            </div>
+            
+            <div class="table-row required" data-category="cpu">
+                <div class="type-badge">CPU</div>
+                <div class="searchable-select" data-field="cpu">
+                    <div class="select-trigger">
+                        <span>请选择CPU</span>
+                        <span class="select-arrow"></span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索CPU...">
+                        <div class="select-options"></div>
                     </div>
                 </div>
+                <input type="number" class="quantity-input" value="1" min="1" data-field="cpu">
+            </div>
 
-                <div class="config-item required">
-                    <span class="config-label">主板</span>
-                    <div class="select-wrapper">
-                        <div class="search-select-trigger" data-category="motherboard">
-                            <span class="selected-text">请选择主板</span>
-                            <span class="select-arrow">▼</span>
-                        </div>
-                        <div class="select-dropdown">
-                            <input type="text" class="search-input" placeholder="搜索产品...">
-                            <div class="search-results"></div>
-                        </div>
-                        <input type="hidden" class="selected-value" value="">
+            <div class="table-row required" data-category="motherboard">
+                <div class="type-badge">主板</div>
+                <div class="searchable-select" data-field="motherboard">
+                    <div class="select-trigger">
+                        <span>请选择主板</span>
+                        <span class="select-arrow"></span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索主板...">
+                        <div class="select-options"></div>
                     </div>
                 </div>
+                <input type="number" class="quantity-input" value="1" min="1" data-field="motherboard">
+            </div>
 
-                <div class="config-item required">
-                    <span class="config-label">内存</span>
-                    <div class="select-wrapper">
-                        <div class="search-select-trigger" data-category="memory">
-                            <span class="selected-text">请选择内存</span>
-                            <span class="select-arrow">▼</span>
-                        </div>
-                        <div class="select-dropdown">
-                            <input type="text" class="search-input" placeholder="搜索产品...">
-                            <div class="search-results"></div>
-                        </div>
-                        <input type="hidden" class="selected-value" value="">
+            <div class="table-row required" data-category="memory">
+                <div class="type-badge">内存</div>
+                <div class="searchable-select" data-field="memory">
+                    <div class="select-trigger">
+                        <span>请选择内存</span>
+                        <span class="select-arrow"></span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索内存...">
+                        <div class="select-options"></div>
                     </div>
                 </div>
+                <input type="number" class="quantity-input" value="1" min="1" data-field="memory">
+            </div>
 
-                <div class="config-item required">
-                    <span class="config-label">硬盘<span class="badge">主</span></span>
-                    <div class="select-wrapper">
-                        <div class="search-select-trigger" data-category="harddrive1">
-                            <span class="selected-text">请选择硬盘</span>
-                            <span class="select-arrow">▼</span>
-                        </div>
-                        <div class="select-dropdown">
-                            <input type="text" class="search-input" placeholder="搜索产品...">
-                            <div class="search-results"></div>
-                        </div>
-                        <input type="hidden" class="selected-value" value="">
+            <div class="table-row required" data-category="harddisk1">
+                <div class="type-badge">硬盘1</div>
+                <div class="searchable-select" data-field="harddisk1">
+                    <div class="select-trigger">
+                        <span>请选择硬盘1</span>
+                        <span class="select-arrow"></span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索硬盘...">
+                        <div class="select-options"></div>
                     </div>
                 </div>
+                <input type="number" class="quantity-input" value="1" min="1" data-field="harddisk1">
+            </div>
 
-                <div class="config-item required">
-                    <span class="config-label">电源</span>
-                    <div class="select-wrapper">
-                        <div class="search-select-trigger" data-category="power">
-                            <span class="selected-text">请选择电源</span>
-                            <span class="select-arrow">▼</span>
-                        </div>
-                        <div class="select-dropdown">
-                            <input type="text" class="search-input" placeholder="搜索产品...">
-                            <div class="search-results"></div>
-                        </div>
-                        <input type="hidden" class="selected-value" value="">
+            <div class="table-row required" data-category="power">
+                <div class="type-badge">电源</div>
+                <div class="searchable-select" data-field="power">
+                    <div class="select-trigger">
+                        <span>请选择电源</span>
+                        <span class="select-arrow"></span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索电源...">
+                        <div class="select-options"></div>
                     </div>
                 </div>
+                <input type="number" class="quantity-input" value="1" min="1" data-field="power">
+            </div>
 
-                <div class="config-item required">
-                    <span class="config-label">机箱</span>
-                    <div class="select-wrapper">
-                        <div class="search-select-trigger" data-category="case">
-                            <span class="selected-text">请选择机箱</span>
-                            <span class="select-arrow">▼</span>
-                        </div>
-                        <div class="select-dropdown">
-                            <input type="text" class="search-input" placeholder="搜索产品...">
-                            <div class="search-results"></div>
-                        </div>
-                        <input type="hidden" class="selected-value" value="">
+            <div class="table-row required" data-category="case">
+                <div class="type-badge">机箱</div>
+                <div class="searchable-select" data-field="case">
+                    <div class="select-trigger">
+                        <span>请选择机箱</span>
+                        <span class="select-arrow"></span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索机箱...">
+                        <div class="select-options"></div>
                     </div>
                 </div>
+                <input type="number" class="quantity-input" value="1" min="1" data-field="case">
+            </div>
+
+            <div class="table-row" data-category="gpu">
+                <div class="type-badge">显卡</div>
+                <div class="searchable-select" data-field="gpu">
+                    <div class="select-trigger">
+                        <span>请选择显卡</span>
+                        <span class="select-arrow"></span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索显卡...">
+                        <div class="select-options"></div>
+                    </div>
+                </div>
+                <input type="number" class="quantity-input" value="1" min="1" data-field="gpu">
+            </div>
+
+            <div class="table-row" data-category="monitor">
+                <div class="type-badge">显示器</div>
+                <div class="searchable-select" data-field="monitor">
+                    <div class="select-trigger">
+                        <span>请选择显示器</span>
+                        <span class="select-arrow"></span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索显示器...">
+                        <div class="select-options"></div>
+                    </div>
+                </div>
+                <input type="number" class="quantity-input" value="1" min="1" data-field="monitor">
+            </div>
+
+            <div class="table-row" data-category="harddisk2">
+                <div class="type-badge">硬盘2</div>
+                <div class="searchable-select" data-field="harddisk2">
+                    <div class="select-trigger">
+                        <span>请选择硬盘2</span>
+                        <span class="select-arrow"></span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索硬盘...">
+                        <div class="select-options"></div>
+                    </div>
+                </div>
+                <input type="number" class="quantity-input" value="1" min="1" data-field="harddisk2">
+            </div>
+
+            <div class="table-row" data-category="cpuFan">
+                <div class="type-badge">CPU风扇</div>
+                <div class="searchable-select" data-field="cpuFan">
+                    <div class="select-trigger">
+                        <span>请选择CPU风扇</span>
+                        <span class="select-arrow"></span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索CPU风扇...">
+                        <div class="select-options"></div>
+                    </div>
+                </div>
+                <input type="number" class="quantity-input" value="1" min="1" data-field="cpuFan">
+            </div>
+
+            <div class="table-row" data-category="fan">
+                <div class="type-badge">风扇</div>
+                <div class="searchable-select" data-field="fan">
+                    <div class="select-trigger">
+                        <span>请选择风扇</span>
+                        <span class="select-arrow"></span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索风扇...">
+                        <div class="select-options"></div>
+                    </div>
+                </div>
+                <input type="number" class="quantity-input" value="1" min="1" data-field="fan">
+            </div>
+
+            <div class="table-row" data-category="caseFan">
+                <div class="type-badge">机箱风扇</div>
+                <div class="searchable-select" data-field="caseFan">
+                    <div class="select-trigger">
+                        <span>请选择机箱风扇</span>
+                        <span class="select-arrow"></span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索机箱风扇...">
+                        <div class="select-options"></div>
+                    </div>
+                </div>
+                <input type="number" class="quantity-input" value="1" min="1" data-field="caseFan">
+            </div>
+
+            <div class="table-row" data-category="keyboard">
+                <div class="type-badge">键盘</div>
+                <div class="searchable-select" data-field="keyboard">
+                    <div class="select-trigger">
+                        <span>请选择键盘</span>
+                        <span class="select-arrow"></span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索键盘...">
+                        <div class="select-options"></div>
+                    </div>
+                </div>
+                <input type="number" class="quantity-input" value="1" min="1" data-field="keyboard">
+            </div>
+
+            <div class="table-row" data-category="mouse">
+                <div class="type-badge">鼠标</div>
+                <div class="searchable-select" data-field="mouse">
+                    <div class="select-trigger">
+                        <span>请选择鼠标</span>
+                        <span class="select-arrow"></span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索鼠标...">
+                        <div class="select-options"></div>
+                    </div>
+                </div>
+                <input type="number" class="quantity-input" value="1" min="1" data-field="mouse">
+            </div>
+
+            <div class="table-row" data-category="speaker">
+                <div class="type-badge">音响</div>
+                <div class="searchable-select" data-field="speaker">
+                    <div class="select-trigger">
+                        <span>请选择音响</span>
+                        <span class="select-arrow"></span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索音响...">
+                        <div class="select-options"></div>
+                    </div>
+                </div>
+                <input type="number" class="quantity-input" value="1" min="1" data-field="speaker">
+            </div>
+
+            <div class="table-row" data-category="other">
+                <div class="type-badge">其它</div>
+                <div class="searchable-select" data-field="other">
+                    <div class="select-trigger">
+                        <span>请选择其它配件</span>
+                        <span class="select-arrow"></span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索配件...">
+                        <div class="select-options"></div>
+                    </div>
+                </div>
+                <input type="number" class="quantity-input" value="1" min="1" data-field="other">
             </div>
         </div>
 
-        <div class="config-section">
-            <h2 class="section-title">可选配件</h2>
-            <div class="config-grid">
-                <div class="config-item optional">
-                    <span class="config-label">硬盘<span class="badge">副</span></span>
-                    <div class="select-wrapper">
-                        <div class="search-select-trigger" data-category="harddrive2">
-                            <span class="selected-text">请选择硬盘（可选）</span>
-                            <span class="select-arrow">▼</span>
-                        </div>
-                        <div class="select-dropdown">
-                            <input type="text" class="search-input" placeholder="搜索产品...">
-                            <div class="search-results"></div>
-                        </div>
-                        <input type="hidden" class="selected-value" value="">
-                    </div>
-                </div>
-
-                <div class="config-item optional">
-                    <span class="config-label">显卡</span>
-                    <div class="select-wrapper">
-                        <div class="search-select-trigger" data-category="gpu">
-                            <span class="selected-text">请选择显卡（可选）</span>
-                            <span class="select-arrow">▼</span>
-                        </div>
-                        <div class="select-dropdown">
-                            <input type="text" class="search-input" placeholder="搜索产品...">
-                            <div class="search-results"></div>
-                        </div>
-                        <input type="hidden" class="selected-value" value="">
-                    </div>
-                </div>
-
-                <div class="config-item optional">
-                    <span class="config-label">显示器</span>
-                    <div class="select-wrapper">
-                        <div class="search-select-trigger" data-category="monitor">
-                            <span class="selected-text">请选择显示器（可选）</span>
-                            <span class="select-arrow">▼</span>
-                        </div>
-                        <div class="select-dropdown">
-                            <input type="text" class="search-input" placeholder="搜索产品...">
-                            <div class="search-results"></div>
-                        </div>
-                        <input type="hidden" class="selected-value" value="">
-                    </div>
-                </div>
-
-                <div class="config-item optional">
-                    <span class="config-label">CPU风扇</span>
-                    <div class="select-wrapper">
-                        <div class="search-select-trigger" data-category="cpuFan">
-                            <span class="selected-text">请选择CPU风扇（可选）</span>
-                            <span class="select-arrow">▼</span>
-                        </div>
-                        <div class="select-dropdown">
-                            <input type="text" class="search-input" placeholder="搜索产品...">
-                            <div class="search-results"></div>
-                        </div>
-                        <input type="hidden" class="selected-value" value="">
-                    </div>
-                </div>
-
-                <div class="config-item optional">
-                    <span class="config-label">机箱风扇</span>
-                    <div class="select-wrapper">
-                        <div class="search-select-trigger" data-category="caseFan">
-                            <span class="selected-text">请选择机箱风扇（可选）</span>
-                            <span class="select-arrow">▼</span>
-                        </div>
-                        <div class="select-dropdown">
-                            <input type="text" class="search-input" placeholder="搜索产品...">
-                            <div class="search-results"></div>
-                        </div>
-                        <input type="hidden" class="selected-value" value="">
-                    </div>
-                </div>
-
-                <div class="config-item optional">
-                    <span class="config-label">键盘</span>
-                    <div class="select-wrapper">
-                        <div class="search-select-trigger" data-category="keyboard">
-                            <span class="selected-text">请选择键盘（可选）</span>
-                            <span class="select-arrow">▼</span>
-                        </div>
-                        <div class="select-dropdown">
-                            <input type="text" class="search-input" placeholder="搜索产品...">
-                            <div class="search-results"></div>
-                        </div>
-                        <input type="hidden" class="selected-value" value="">
-                    </div>
-                </div>
-
-                <div class="config-item optional">
-                    <span class="config-label">鼠标</span>
-                    <div class="select-wrapper">
-                        <div class="search-select-trigger" data-category="mouse">
-                            <span class="selected-text">请选择鼠标（可选）</span>
-                            <span class="select-arrow">▼</span>
-                        </div>
-                        <div class="select-dropdown">
-                            <input type="text" class="search-input" placeholder="搜索产品...">
-                            <div class="search-results"></div>
-                        </div>
-                        <input type="hidden" class="selected-value" value="">
-                    </div>
-                </div>
-
-                <div class="config-item optional">
-                    <span class="config-label">音响</span>
-                    <div class="select-wrapper">
-                        <div class="search-select-trigger" data-category="speaker">
-                            <span class="selected-text">请选择音响（可选）</span>
-                            <span class="select-arrow">▼</span>
-                        </div>
-                        <div class="select-dropdown">
-                            <input type="text" class="search-input" placeholder="搜索产品...">
-                            <div class="search-results"></div>
-                        </div>
-                        <input type="hidden" class="selected-value" value="">
-                    </div>
-                </div>
-
-                <div class="config-item optional">
-                    <span class="config-label">其它</span>
-                    <div class="select-wrapper">
-                        <div class="search-select-trigger" data-category="other">
-                            <span class="selected-text">请选择其它配件（可选）</span>
-                            <span class="select-arrow">▼</span>
-                        </div>
-                        <div class="select-dropdown">
-                            <input type="text" class="search-input" placeholder="搜索产品...">
-                            <div class="search-results"></div>
-                        </div>
-                        <input type="hidden" class="selected-value" value="">
-                    </div>
-                </div>
+        <div class="total-section">
+            <div class="total-row">
+                <div class="total-label">合计</div>
+                <div class="total-value waiting" id="total">请先完成基础配置</div>
             </div>
+            <div class="total-note" id="totalNote">只有 CPU、主板、内存、硬盘1、电源、机箱 都选择后才显示合计。</div>
         </div>
 
-        <div class="summary-section">
-            <div class="summary-grid">
-                <div class="summary-item">
-                    <div class="summary-label">产品金额</div>
-                    <div class="summary-value" id="subtotal">¥0</div>
-                </div>
-                <div class="summary-item">
-                    <div class="summary-label">利润</div>
-                    <div class="summary-value" id="profit">¥0</div>
-                </div>
-                <div class="summary-item highlight">
-                    <div class="summary-label">应付金额</div>
-                    <div class="summary-value" id="total">¥0</div>
-                </div>
-            </div>
-            <div class="discount-row">
-                <span class="discount-label">优惠减免：</span>
-                <input type="number" id="discount" placeholder="输入优惠金额" oninput="updateTotal()">
-            </div>
-            <div class="rule-hint">
-                利润计算规则：产品金额 × 10%，最低 ¥400<br>
-                <span style="opacity: 0.7">（需选择CPU、主板、内存、硬盘、电源、机箱后生效）</span>
-            </div>
+        <div class="action-buttons">
+            <button class="btn btn-clear" onclick="clearAll()">清除配置</button>
+            <button class="btn btn-screenshot" onclick="screenshotConfig()">截图</button>
+            <button class="btn btn-save" onclick="saveConfig()">保存配置</button>
         </div>
 
-        <div class="buttons">
-            <button class="btn btn-secondary" onclick="clearAll()">🗑️ 清除</button>
-            <button class="btn btn-success" onclick="retailScreenshot()">📸 零售截图</button>
-            <button class="btn btn-warning" onclick="wholesaleScreenshot()">📸 同行截图</button>
-            <button class="btn btn-primary" onclick="saveConfig()">💾 保存</button>
-        </div>
-
-        <div class="saved-section">
-            <div class="saved-header">
-                <h3 class="saved-title">已保存的配置</h3>
-                <span class="saved-count" id="savedCount">0 条记录</span>
-            </div>
-            <div class="saved-list" id="savedConfigsList">
-                <div class="empty-state">
-                    <div class="empty-state-icon">📋</div>
-                    <div class="empty-state-text">暂无保存的配置</div>
-                </div>
+        <div class="saved-configs">
+            <h3>📁 已保存的配置</h3>
+            <div id="savedList">
+                <div class="no-saved">暂无保存的配置</div>
             </div>
         </div>
     </div>
@@ -893,364 +903,433 @@
     <script>
         const products = {
             cpu: [
-                { name: 'Intel Core i9-14900K', price: 4299 },
-                { name: 'Intel Core i7-14700K', price: 3299 },
-                { name: 'Intel Core i5-14600K', price: 2499 },
-                { name: 'AMD Ryzen 9 7950X', price: 4199 },
-                { name: 'AMD Ryzen 7 7800X3D', price: 2999 },
-                { name: 'AMD Ryzen 5 7600X', price: 1699 },
-                { name: 'Intel Core i3-14100F', price: 799 },
-                { name: 'AMD Ryzen 5 5600', price: 899 }
+                { id: 'cpu-1', name: 'Intel Core i5-14400F', price: 1299 },
+                { id: 'cpu-2', name: 'Intel Core i5-14600KF', price: 1899 },
+                { id: 'cpu-3', name: 'Intel Core i7-14700KF', price: 2999 },
+                { id: 'cpu-4', name: 'AMD Ryzen 5 7600', price: 1399 },
+                { id: 'cpu-5', name: 'AMD Ryzen 5 7800X3D', price: 2499 },
+                { id: 'cpu-6', name: 'AMD Ryzen 7 7800X3D', price: 3299 },
+                { id: 'cpu-7', name: 'Intel Core i9-14900K', price: 4499 },
+                { id: 'cpu-8', name: 'AMD Ryzen 9 7950X3D', price: 4999 }
             ],
             motherboard: [
-                { name: '华硕 ROG MAXIMUS Z790 HERO', price: 4999 },
-                { name: '微星 MEG Z790 ACE', price: 4299 },
-                { name: '华硕 TUF GAMING Z790-PLUS', price: 2299 },
-                { name: '技嘉 B760M DS3H', price: 699 },
-                { name: '微星 MAG B650 TOMAHAWK WIFI', price: 1599 },
-                { name: '华硕 ROG CROSSHAIR X670E HERO', price: 5999 },
-                { name: '华擎 B660M-HDV', price: 499 },
-                { name: '映泰 B550M-SILVER', price: 599 }
+                { id: 'mb-1', name: '华硕ROG STRIX Z790-A', price: 2999 },
+                { id: 'mb-2', name: '微星MPG Z790 EDGE', price: 2499 },
+                { id: 'mb-3', name: '技嘉B760M DS3H', price: 799 },
+                { id: 'mb-4', name: '华硕TUF B760M-PLUS', price: 1099 },
+                { id: 'mb-5', name: '微星MAG B650M MORTAR', price: 1299 },
+                { id: 'mb-6', name: '华硕ROG X670E HERO', price: 4499 },
+                { id: 'mb-7', name: '华擎B660M PRO RS', price: 699 },
+                { id: 'mb-8', name: '映泰B760MX-E PRO', price: 599 }
             ],
             memory: [
-                { name: '芝奇 Trident Z5 RGB DDR5 32GB', price: 1699 },
-                { name: '金士顿 FURY Beast DDR5 16GB', price: 699 },
-                { name: '海盗船 Vengeance DDR5 32GB', price: 1599 },
-                { name: '威刚 XPG龙耀 D50 DDR4 16GB', price: 399 },
-                { name: '三星 DDR4 8GB 2666', price: 199 },
-                { name: '金士顿 DDR4 16GB 3200', price: 349 },
-                { name: '芝奇 DDR4 32GB 3600', price: 799 },
-                { name: '英睿达 DDR5 16GB 4800', price: 599 }
+                { id: 'mem-1', name: '金士顿DDR5 32GB 5600', price: 699 },
+                { id: 'mem-2', name: '芝奇皇家戟DDR5 32GB 6000', price: 899 },
+                { id: 'mem-3', name: '海盗船复仇者DDR5 32GB 5600', price: 749 },
+                { id: 'mem-4', name: '威刚XPG DDR5 16GB 5600', price: 349 },
+                { id: 'mem-5', name: '金士顿DDR5 64GB 5600', price: 1299 },
+                { id: 'mem-6', name: '芝奇Trident Z5 RGB DDR5 32GB 6400', price: 1199 }
             ],
-            harddrive1: [
-                { name: '三星 990 PRO 2TB', price: 1299 },
-                { name: '西数 SN850X 1TB', price: 699 },
-                { name: '金士顿 KC3000 2TB', price: 1199 },
-                { name: '英睿达 P3 Plus 1TB', price: 449 },
-                { name: '希捷 FireCuda 530 2TB', price: 1099 },
-                { name: '三星 980 PRO 1TB', price: 599 },
-                { name: '西数 WD Blue SN570 500GB', price: 299 },
-                { name: '金士顿 A400 1TB', price: 249 }
+            harddisk1: [
+                { id: 'hd1-1', name: '三星980 PRO 1TB', price: 699 },
+                { id: 'hd1-2', name: '西部数据SN850X 1TB', price: 599 },
+                { id: 'hd1-3', name: '金士顿KC3000 2TB', price: 1299 },
+                { id: 'hd1-4', name: '三星990 PRO 2TB', price: 1499 },
+                { id: 'hd1-5', name: '致态TiPlus7100 1TB', price: 499 },
+                { id: 'hd1-6', name: '希捷FireCuda 530 2TB', price: 1199 }
             ],
-            harddrive2: [
-                { name: '三星 990 PRO 4TB', price: 2499 },
-                { name: '西数 SN850X 2TB', price: 1299 },
-                { name: '希捷 BarraCuda 4TB', price: 599 },
-                { name: '西部数据 Elements 2TB', price: 399 },
-                { name: '东芝 P300 3TB', price: 449 },
-                { name: '三星 870 EVO 2TB', price: 899 },
-                { name: 'WD Black 2TB', price: 799 },
-                { name: '无', price: 0 }
+            harddisk2: [
+                { id: 'hd2-1', name: '三星980 PRO 2TB', price: 1299 },
+                { id: 'hd2-2', name: '西部数据SN850X 2TB', price: 1099 },
+                { id: 'hd2-3', name: '希捷Barracuda 4TB HDD', price: 499 },
+                { id: 'hd2-4', name: '西部数据WD Blue 2TB HDD', price: 399 },
+                { id: 'hd2-5', name: '东芝P300 3TB HDD', price: 349 }
+            ],
+            harddisk3: [
+                { id: 'hd3-1', name: '三星990 PRO 4TB', price: 2999 },
+                { id: 'hd3-2', name: '西部数据SN850X 4TB', price: 2499 },
+                { id: 'hd3-3', name: '希捷IronWolf 8TB NAS', price: 1299 },
+                { id: 'hd3-4', name: '西部数据Red Plus 6TB', price: 899 }
             ],
             power: [
-                { name: '海盗船 RM1000x', price: 1199 },
-                { name: '海韵 FOCUS GX-850', price: 899 },
-                { name: '长城 G7 750W', price: 599 },
-                { name: '航嘉 MVP K650', price: 449 },
-                { name: '振华 LEADEX G 650W', price: 699 },
-                { name: '酷冷至尊 MWE 550W', price: 349 },
-                { name: '金河田 GF600W', price: 299 },
-                { name: '先马 金牌500W', price: 249 }
+                { id: 'pwr-1', name: '海盗船RM750x', price: 799 },
+                { id: 'pwr-2', name: '海韵FOCUS GX-850', price: 899 },
+                { id: 'pwr-3', name: '长城G6 650W', price: 399 },
+                { id: 'pwr-4', name: '航嘉MVP K750', price: 499 },
+                { id: 'pwr-5', name: '振华LEADEX G 1000W', price: 1299 },
+                { id: 'pwr-6', name: '酷冷至尊MWE Gold 650W', price: 449 }
             ],
             case: [
-                { name: '华硕 ROG Hyperion', price: 3999 },
-                { name: '联力 O11 Dynamic EVO', price: 1299 },
-                { name: '追风者 P600S', price: 999 },
-                { name: '恩杰 H7 Flow', price: 799 },
-                { name: '追风者 PHANTEKS P400A', price: 499 },
-                { name: '先马 趣造I\'m', price: 299 },
-                { name: '航嘉 GX580H', price: 249 },
-                { name: '金河田 预见N17', price: 199 }
+                { id: 'case-1', name: '华硕ROG Hyperion', price: 1999 },
+                { id: 'case-2', name: '追风者P600S', price: 899 },
+                { id: 'case-3', name: '联力O11 Dynamic', price: 799 },
+                { id: 'case-4', name: '先马趣造2', price: 299 },
+                { id: 'case-5', name: '追风者518XTG', price: 1299 },
+                { id: 'case-6', name: '航嘉GX580H', price: 199 }
             ],
             gpu: [
-                { name: 'NVIDIA RTX 4090', price: 14999 },
-                { name: 'NVIDIA RTX 4080 SUPER', price: 9499 },
-                { name: 'NVIDIA RTX 4070 SUPER', price: 6499 },
-                { name: 'NVIDIA RTX 4060 Ti', price: 3199 },
-                { name: 'AMD RX 7900 XTX', price: 7999 },
-                { name: 'AMD RX 7800 XT', price: 4299 },
-                { name: 'NVIDIA RTX 3060', price: 2499 },
-                { name: '无', price: 0 }
+                { id: 'gpu-1', name: 'NVIDIA RTX 4060', price: 2499 },
+                { id: 'gpu-2', name: 'NVIDIA RTX 4060 Ti', price: 3199 },
+                { id: 'gpu-3', name: 'NVIDIA RTX 4070 SUPER', price: 4899 },
+                { id: 'gpu-4', name: 'NVIDIA RTX 4080 SUPER', price: 7899 },
+                { id: 'gpu-5', name: 'NVIDIA RTX 4090', price: 14999 },
+                { id: 'gpu-6', name: 'AMD RX 7600 XT', price: 2199 },
+                { id: 'gpu-7', name: 'AMD RX 7800 XT', price: 3699 }
             ],
             monitor: [
-                { name: '华硕 ROG PG32UQX', price: 12999 },
-                { name: 'LG 27GP950-B', price: 4999 },
-                { name: '戴尔 U2723QE', price: 3999 },
-                { name: 'AOC Q27G2S/D', price: 1599 },
-                { name: 'HKC TG32C2U', price: 2499 },
-                { name: '优派 VX2780-2K-PRO', price: 1299 },
-                { name: '小米 27英寸 2K', price: 1499 },
-                { name: '无', price: 0 }
+                { id: 'mon-1', name: '华硕ROG PG279QM', price: 5999 },
+                { id: 'mon-2', name: 'LG 27GP850', price: 2499 },
+                { id: 'mon-3', name: 'AOC 27G2SP', price: 1299 },
+                { id: 'mon-4', name: '戴尔U2723QE', price: 4499 },
+                { id: 'mon-5', name: '宏碁Predator XB273U', price: 3299 }
             ],
             cpuFan: [
-                { name: '猫头鹰 NH-D15', price: 699 },
-                { name: '九州风神 AK620', price: 399 },
-                { name: '利民 AK120 SE', price: 129 },
-                { name: '酷冷至尊 ML240R', price: 499 },
-                { name: '华硕 ROG RYUJIN III', price: 2999 },
-                { name: '追风者 PH-TC14PE', price: 299 },
-                { name: '超频三 东海X7', price: 199 },
-                { name: '无', price: 0 }
+                { id: 'cf-1', name: '猫头鹰NH-D15', price: 699 },
+                { id: 'cf-2', name: '九州风神AK620', price: 299 },
+                { id: 'cf-3', name: '利民PA120 SE', price: 149 },
+                { id: 'cf-4', name: '酷冷至尊ML360R', price: 599 },
+                { id: 'cf-5', name: '追风者TC12DX', price: 199 }
+            ],
+            fan: [
+                { id: 'fan-1', name: '猫头鹰NF-F12', price: 129 },
+                { id: 'fan-2', name: '追风者F140MP', price: 99 },
+                { id: 'fan-3', name: '利民C12C', price: 49 },
+                { id: 'fan-4', name: '酷冷至尊MF120 Halo', price: 69 }
             ],
             caseFan: [
-                { name: '利民 TL-C12 PRO', price: 69 },
-                { name: '追风者 SK120', price: 59 },
-                { name: '九州风神 MF120 GT', price: 79 },
-                { name: '联力 UNI FAN SL120', price: 129 },
-                { name: '海盗船 LL120 RGB', price: 169 },
-                { name: '酷冷至尊 MF140 HALO', price: 99 },
-                { name: '先马 冰风', price: 39 },
-                { name: '无', price: 0 }
+                { id: 'cfan-1', name: '联力积木风扇SL120', price: 199 },
+                { id: 'cfan-2', name: '追风者SK PWM', price: 89 },
+                { id: 'cfan-3', name: '利民TL-C12S', price: 59 }
             ],
             keyboard: [
-                { name: '华硕 ROG Azoth', price: 2499 },
-                { name: '雷蛇 BlackWidow V4', price: 1499 },
-                { name: '樱桃 MX 3.0S', price: 899 },
-                { name: '罗技 G915 TKL', price: 1599 },
-                { name: 'ikbc W210', price: 499 },
-                { name: '达尔优 A87', price: 399 },
-                { name: '雷柏 V500PRO', price: 149 },
-                { name: '无', price: 0 }
+                { id: 'kb-1', name: '雷蛇黑寡妇V4', price: 1299 },
+                { id: 'kb-2', name: '罗技G915 TKL', price: 1499 },
+                { id: 'kb-3', name: '樱桃MX 3.0S', price: 699 },
+                { id: 'kb-4', name: '达尔优A87', price: 399 }
             ],
             mouse: [
-                { name: '罗技 GPW 3', price: 1299 },
-                { name: '雷蛇 DeathAdder V3', price: 899 },
-                { name: '华硕 ROG Gladius III', price: 699 },
-                { name: '赛睿 Sensei Ten', price: 599 },
-                { name: '雷柏 VT950', price: 399 },
-                { name: '达尔优 EM915', price: 199 },
-                { name: '罗技 G102', price: 129 },
-                { name: '无', price: 0 }
+                { id: 'mouse-1', name: '罗技G502 HERO', price: 399 },
+                { id: 'mouse-2', name: '雷蛇炼狱蝰蛇V3', price: 499 },
+                { id: 'mouse-3', name: '赛睿Sensei Ten', price: 349 },
+                { id: 'mouse-4', name: '卓威EC2-C', price: 329 }
             ],
             speaker: [
-                { name: '漫步者 R1700BT', price: 399 },
-                { name: '惠威 D1080MKII', price: 699 },
-                { name: '罗技 Z623', price: 899 },
-                { name: 'JBL PS3500', price: 599 },
-                { name: '飞利浦 SPA5300', price: 299 },
-                { name: '创新 T100', price: 349 },
-                { name: '小米 小爱音箱 Pro', price: 299 },
-                { name: '无', price: 0 }
+                { id: 'spk-1', name: '漫步者R1700BT', price: 399 },
+                { id: 'spk-2', name: '惠威D1080MKII', price: 599 },
+                { id: 'spk-3', name: '罗技Z623', price: 699 },
+                { id: 'spk-4', name: '雷蛇天狼星幻彩版', price: 899 }
             ],
             other: [
-                { name: '机箱灯带 RGB', price: 99 },
-                { name: '理线包套装', price: 49 },
-                { name: '显示器支架', price: 299 },
-                { name: 'USB集线器', price: 79 },
-                { name: '硬盘托架', price: 39 },
-                { name: '防尘网套装', price: 29 },
-                { name: '定制水冷管', price: 199 },
-                { name: '无', price: 0 }
+                { id: 'other-1', name: '显示器支架', price: 299 },
+                { id: 'other-2', name: 'USB集线器', price: 99 },
+                { id: 'other-3', name: '网线', price: 39 },
+                { id: 'other-4', name: 'HDMI线', price: 69 }
             ]
         };
 
-        function initSearchSelects() {
-            document.querySelectorAll('.search-select-trigger').forEach(trigger => {
-                const category = trigger.dataset.category;
-                const wrapper = trigger.closest('.select-wrapper');
-                const dropdown = wrapper.querySelector('.select-dropdown');
-                const searchInput = wrapper.querySelector('.search-input');
-                const results = wrapper.querySelector('.search-results');
-                const selectedValue = wrapper.querySelector('.selected-value');
+        const selectedProducts = {};
+        const requiredCategories = ['cpu', 'motherboard', 'memory', 'harddisk1', 'power', 'case'];
+        let activeDropdown = null;
+
+        function initSelects() {
+            const selects = document.querySelectorAll('.searchable-select');
+            
+            selects.forEach(select => {
+                const field = select.dataset.field;
+                const trigger = select.querySelector('.select-trigger');
+                const dropdown = select.querySelector('.select-dropdown');
+                const searchInput = select.querySelector('.search-input');
+                const optionsContainer = select.querySelector('.select-options');
                 
-                renderResults(results, category, '');
+                function renderOptions(filter = '') {
+                    optionsContainer.innerHTML = '';
+                    const filtered = products[field].filter(p => 
+                        p.name.toLowerCase().includes(filter.toLowerCase())
+                    );
+                    
+                    if (filtered.length === 0) {
+                        const noResult = document.createElement('div');
+                        noResult.className = 'select-option';
+                        noResult.textContent = '没有找到匹配的产品';
+                        noResult.style.color = '#f5576c';
+                        optionsContainer.appendChild(noResult);
+                        return;
+                    }
+                    
+                    filtered.forEach(product => {
+                        const option = document.createElement('div');
+                        option.className = 'select-option';
+                        if (selectedProducts[field]?.id === product.id) {
+                            option.classList.add('selected');
+                        }
+                        option.innerHTML = `<span>${product.name}</span><span style="color: #00ff88;">¥${product.price}</span>`;
+                        option.addEventListener('click', () => selectProduct(field, product));
+                        optionsContainer.appendChild(option);
+                    });
+                }
+                
+                renderOptions();
+                
+                searchInput.addEventListener('input', (e) => {
+                    renderOptions(e.target.value);
+                });
                 
                 trigger.addEventListener('click', (e) => {
                     e.stopPropagation();
+                    toggleDropdown(select, field);
+                });
+            });
+            
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.searchable-select')) {
                     closeAllDropdowns();
-                    dropdown.classList.toggle('open');
-                    trigger.querySelector('.select-arrow').classList.toggle('open');
-                    if (dropdown.classList.contains('open')) {
-                        searchInput.focus();
-                    }
-                });
-                
-                searchInput.addEventListener('input', () => {
-                    const query = searchInput.value.toLowerCase();
-                    renderResults(results, category, query);
-                });
-                
-                document.addEventListener('click', (e) => {
-                    if (!wrapper.contains(e.target)) {
-                        dropdown.classList.remove('open');
-                        trigger.querySelector('.select-arrow').classList.remove('open');
-                    }
-                });
+                }
             });
         }
 
-        function renderResults(resultsContainer, category, query) {
-            const categoryProducts = products[category] || [];
-            const filtered = categoryProducts.filter(p => 
-                p.name.toLowerCase().includes(query)
-            );
+        let currentSelect = null;
+        
+        function toggleDropdown(select, field) {
+            const dropdown = select.querySelector('.select-dropdown');
+            const trigger = select.querySelector('.select-trigger');
             
-            resultsContainer.innerHTML = filtered.map(product => `
-                <div class="search-item" data-price="${product.price || 0}" data-name="${product.name}">
-                    <span class="search-item-name">${product.name}</span>
-                    <span class="search-item-price">${product.price ? '¥' + product.price : '-'}</span>
-                </div>
-            `).join('');
+            if (activeDropdown) {
+                activeDropdown.classList.remove('open');
+                activeDropdown.style.display = 'none';
+                if (currentSelect) {
+                    const prevTrigger = currentSelect.querySelector('.select-trigger');
+                    prevTrigger.querySelector('.select-arrow').classList.remove('open');
+                    currentSelect.appendChild(activeDropdown);
+                }
+            }
             
-            resultsContainer.querySelectorAll('.search-item').forEach(item => {
-                item.addEventListener('click', () => {
-                    const price = item.dataset.price;
-                    const name = item.dataset.name;
-                    const wrapper = resultsContainer.closest('.select-wrapper');
-                    const trigger = wrapper.querySelector('.search-select-trigger');
-                    const dropdown = wrapper.querySelector('.select-dropdown');
-                    const selectedValue = wrapper.querySelector('.selected-value');
-                    
-                    trigger.querySelector('.selected-text').textContent = name;
-                    trigger.classList.add('selected');
-                    selectedValue.value = price;
-                    
-                    dropdown.classList.remove('open');
-                    trigger.querySelector('.select-arrow').classList.remove('open');
-                    
-                    updateTotal();
-                });
+            if (dropdown.classList.contains('open')) {
+                dropdown.classList.remove('open');
+                dropdown.style.display = 'none';
+                trigger.querySelector('.select-arrow').classList.remove('open');
+                activeDropdown = null;
+                currentSelect = null;
+            } else {
+                document.body.appendChild(dropdown);
+                positionDropdown(select, dropdown);
+                dropdown.classList.add('open');
+                dropdown.style.display = 'block';
+                trigger.querySelector('.select-arrow').classList.add('open');
+                activeDropdown = dropdown;
+                currentSelect = select;
+                
+                const searchInput = dropdown.querySelector('.search-input');
+                searchInput.value = '';
+                renderOptionsForField(field, dropdown.querySelector('.select-options'));
+                searchInput.focus();
+            }
+        }
+
+        function positionDropdown(select, dropdown) {
+            const trigger = select.querySelector('.select-trigger');
+            const rect = trigger.getBoundingClientRect();
+            const dropdownWidth = rect.width;
+            
+            dropdown.style.width = dropdownWidth + 'px';
+            dropdown.style.left = rect.left + 'px';
+            dropdown.style.top = (rect.bottom + 10) + 'px';
+        }
+
+        function renderOptionsForField(field, container) {
+            container.innerHTML = '';
+            const filtered = products[field];
+            
+            filtered.forEach(product => {
+                const option = document.createElement('div');
+                option.className = 'select-option';
+                if (selectedProducts[field]?.id === product.id) {
+                    option.classList.add('selected');
+                }
+                option.innerHTML = `<span>${product.name}</span><span style="color: #00ff88;">¥${product.price}</span>`;
+                option.addEventListener('click', () => selectProduct(field, product));
+                container.appendChild(option);
             });
         }
 
         function closeAllDropdowns() {
-            document.querySelectorAll('.select-dropdown').forEach(dropdown => {
-                dropdown.classList.remove('open');
-            });
-            document.querySelectorAll('.select-arrow').forEach(arrow => {
-                arrow.classList.remove('open');
-            });
+            if (activeDropdown && currentSelect) {
+                activeDropdown.classList.remove('open');
+                activeDropdown.style.display = 'none';
+                const trigger = currentSelect.querySelector('.select-trigger');
+                trigger.querySelector('.select-arrow').classList.remove('open');
+                currentSelect.appendChild(activeDropdown);
+            }
+            activeDropdown = null;
+            currentSelect = null;
         }
 
-        function updateTotal() {
-            const requiredCategories = ['cpu', 'motherboard', 'memory', 'harddrive1', 'power', 'case'];
-            const allRequiredSelected = requiredCategories.every(category => {
-                const wrapper = document.querySelector(`.select-wrapper [data-category="${category}"]`).closest('.select-wrapper');
-                const value = wrapper.querySelector('.selected-value').value;
-                return value && value !== '0' && value !== '';
-            });
+        function selectProduct(field, product) {
+            selectedProducts[field] = product;
+            
+            const select = document.querySelector(`.searchable-select[data-field="${field}"]`);
+            const trigger = select.querySelector('.select-trigger span:first-child');
+            trigger.textContent = `${product.name} · ¥${product.price}`;
+            
+            closeAllDropdowns();
+            
+            calculateTotal();
+        }
 
-            if (!allRequiredSelected) {
-                document.getElementById('subtotal').textContent = '¥0';
-                document.getElementById('profit').textContent = '¥0';
-                document.getElementById('total').textContent = '¥0';
+        function calculateTotal() {
+            const requiredSelected = requiredCategories.every(cat => selectedProducts[cat]);
+            
+            const totalEl = document.getElementById('total');
+            if (!requiredSelected) {
+                totalEl.textContent = '请先完成基础配置';
+                totalEl.className = 'total-value waiting';
                 return;
             }
-
-            const rows = document.querySelectorAll('.config-item');
-            let subtotal = 0;
             
-            rows.forEach(row => {
-                const selectedValue = row.querySelector('.selected-value');
-                if (selectedValue) {
-                    subtotal += parseInt(selectedValue.value) || 0;
-                }
+            let subtotal = 0;
+            Object.keys(selectedProducts).forEach(field => {
+                const price = Math.floor(selectedProducts[field].price);
+                const quantity = Math.max(1, parseInt(document.querySelector(`.quantity-input[data-field="${field}"]`).value) || 1);
+                subtotal += price * quantity;
             });
-
-            const profit = Math.max(Math.floor(subtotal * 0.1), 400);
-            const discount = parseInt(document.getElementById('discount').value) || 0;
-            const total = subtotal + profit - discount;
-
-            document.getElementById('subtotal').textContent = '¥' + subtotal.toLocaleString();
-            document.getElementById('profit').textContent = '¥' + profit.toLocaleString();
-            document.getElementById('total').textContent = '¥' + Math.max(total, 0).toLocaleString();
+            
+            const profit = subtotal * 0.1 >= 400 ? Math.ceil(subtotal * 0.1) : 400;
+            const total = Math.floor(subtotal + profit);
+            
+            totalEl.textContent = `¥ ${total.toLocaleString()}`;
+            totalEl.className = 'total-value';
         }
 
         function clearAll() {
-            document.querySelectorAll('.select-wrapper').forEach(wrapper => {
-                const trigger = wrapper.querySelector('.search-select-trigger');
-                const selectedValue = wrapper.querySelector('.selected-value');
-                
-                const category = trigger.dataset.category;
-                trigger.querySelector('.selected-text').textContent = 
-                    category === 'cpu' ? '请选择CPU' :
-                    category === 'motherboard' ? '请选择主板' :
-                    category === 'memory' ? '请选择内存' :
-                    category === 'harddrive1' ? '请选择硬盘' :
-                    category === 'harddrive2' ? '请选择硬盘（可选）' :
-                    category === 'power' ? '请选择电源' :
-                    category === 'case' ? '请选择机箱' :
-                    category === 'gpu' ? '请选择显卡（可选）' :
-                    category === 'monitor' ? '请选择显示器（可选）' :
-                    category === 'cpuFan' ? '请选择CPU风扇（可选）' :
-                    category === 'caseFan' ? '请选择机箱风扇（可选）' :
-                    category === 'keyboard' ? '请选择键盘（可选）' :
-                    category === 'mouse' ? '请选择鼠标（可选）' :
-                    category === 'speaker' ? '请选择音响（可选）' : '请选择其它配件（可选）';
-                
-                trigger.classList.remove('selected');
-                selectedValue.value = '';
+            Object.keys(selectedProducts).forEach(field => {
+                delete selectedProducts[field];
             });
-            document.getElementById('discount').value = '';
-            updateTotal();
+            
+            document.querySelectorAll('.select-trigger span:first-child').forEach(span => {
+                const category = span.parentElement.parentElement.closest('.table-row').dataset.category;
+                span.textContent = `请选择${getCategoryName(category)}`;
+            });
+            
+            document.querySelectorAll('.quantity-input').forEach(input => input.value = '1');
+            
+            calculateTotal();
         }
 
-        function retailScreenshot() {
-            alert('零售截图功能已准备就绪！（实际项目中可集成截图API）');
-        }
-
-        function wholesaleScreenshot() {
-            alert('同行截图功能已准备就绪！（实际项目中可集成截图API）');
+        function getCategoryName(category) {
+            const names = {
+                cpu: 'CPU',
+                motherboard: '主板',
+                memory: '内存',
+                harddisk1: '硬盘1',
+                harddisk2: '硬盘2',
+                harddisk3: '硬盘3',
+                power: '电源',
+                case: '机箱',
+                gpu: '显卡',
+                monitor: '显示器',
+                cpuFan: 'CPU风扇',
+                fan: '风扇',
+                caseFan: '机箱风扇',
+                keyboard: '键盘',
+                mouse: '鼠标',
+                speaker: '音响',
+                other: '其它配件'
+            };
+            return names[category] || category;
         }
 
         function saveConfig() {
             const config = {
-                discount: document.getElementById('discount').value,
-                items: [],
-                total: document.getElementById('total').textContent,
-                savedAt: new Date().toLocaleString('zh-CN')
+                selected: JSON.parse(JSON.stringify(selectedProducts)),
+                timestamp: Date.now()
             };
-
-            document.querySelectorAll('.config-item').forEach(row => {
-                const label = row.querySelector('.config-label').textContent.replace(/\s*\[.*?\]|\s*<.*?>/g, '').trim();
-                const wrapper = row.querySelector('.select-wrapper');
-                const trigger = wrapper.querySelector('.search-select-trigger');
-                const price = wrapper.querySelector('.selected-value').value;
-                config.items.push({
-                    type: label,
-                    name: trigger.querySelector('.selected-text').textContent,
-                    price
-                });
-            });
-
-            const savedConfigs = JSON.parse(localStorage.getItem('pcConfigs') || '[]');
-            savedConfigs.push(config);
-            localStorage.setItem('pcConfigs', JSON.stringify(savedConfigs));
+            
+            const saved = JSON.parse(localStorage.getItem('pcConfigs') || '[]');
+            saved.push(config);
+            localStorage.setItem('pcConfigs', JSON.stringify(saved));
             
             alert('配置已保存！');
-            loadSavedConfigs();
+            renderSavedConfigs();
         }
 
-        function loadSavedConfigs() {
-            const savedConfigs = JSON.parse(localStorage.getItem('pcConfigs') || '[]');
-            const list = document.getElementById('savedConfigsList');
-            const count = document.getElementById('savedCount');
+        function renderSavedConfigs() {
+            const saved = JSON.parse(localStorage.getItem('pcConfigs') || '[]');
+            const list = document.getElementById('savedList');
             
-            count.textContent = savedConfigs.length + ' 条记录';
-            
-            if (savedConfigs.length === 0) {
-                list.innerHTML = `
-                    <div class="empty-state">
-                        <div class="empty-state-icon">📋</div>
-                        <div class="empty-state-text">暂无保存的配置</div>
-                    </div>
-                `;
+            if (saved.length === 0) {
+                list.innerHTML = '<div class="no-saved">暂无保存的配置</div>';
                 return;
             }
-
-            list.innerHTML = savedConfigs.map((config, index) => `
-                <div class="config-card">
-                    <div class="config-card-info">
-                        <span class="config-card-name">配置 ${index + 1}</span>
-                        <span class="config-card-date">${config.savedAt}</span>
+            
+            list.innerHTML = saved.map((config, index) => {
+                let total = 0;
+                Object.keys(config.selected).forEach(field => {
+                    total += config.selected[field].price;
+                });
+                const profit = total * 0.1 >= 400 ? total * 0.1 : 400;
+                const finalTotal = total + profit;
+                
+                return `
+                    <div class="saved-item">
+                        <span>配置 ${index + 1} - ¥${finalTotal.toLocaleString()}</span>
+                        <button onclick="loadConfig(${index})">加载</button>
+                        <button onclick="deleteConfig(${index})">删除</button>
                     </div>
-                    <span class="config-card-total">${config.total}</span>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
-        initSearchSelects();
-        loadSavedConfigs();
+        function loadConfig(index) {
+            const saved = JSON.parse(localStorage.getItem('pcConfigs') || '[]');
+            const config = saved[index];
+            
+            Object.keys(config.selected).forEach(field => {
+                selectProduct(field, config.selected[field]);
+            });
+            
+            calculateTotal();
+        }
+
+        function deleteConfig(index) {
+            const saved = JSON.parse(localStorage.getItem('pcConfigs') || '[]');
+            saved.splice(index, 1);
+            localStorage.setItem('pcConfigs', JSON.stringify(saved));
+            renderSavedConfigs();
+        }
+
+        function screenshotConfig() {
+            alert('截图功能已触发！');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+                initSelects();
+                renderSavedConfigs();
+                
+                document.querySelectorAll('.quantity-input').forEach(input => {
+                    input.addEventListener('change', (e) => {
+                        calculateTotal();
+                    });
+                    input.addEventListener('focus', (e) => {
+                        e.target.select();
+                    });
+                    input.addEventListener('click', (e) => {
+                        e.target.select();
+                    });
+                });
+
+            window.addEventListener('resize', () => {
+                if (activeDropdown) {
+                    const select = activeDropdown.parentElement;
+                    positionDropdown(select, activeDropdown);
+                }
+            });
+
+            window.addEventListener('scroll', () => {
+                if (activeDropdown) {
+                    const select = activeDropdown.parentElement;
+                    positionDropdown(select, activeDropdown);
+                }
+            }, true);
+        });
     </script>
 </body>
 </html>
