@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>专业电脑配置单</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .header h1 {
+            color: #fff;
+            font-size: 28px;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .dealer-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .dealer-info input {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .dealer-info input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .dealer-info input:focus {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .config-table {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .table-header {
+            display: grid;
+            grid-template-columns: 100px 1fr 80px 100px 120px;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            padding: 15px 20px;
+            font-weight: 600;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 100px 1fr 80px 100px 120px;
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .table-row:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+        }
+
+        .type-cell {
+            color: #00d4ff;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .select-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-select-trigger {
+            width: 100%;
+            padding: 12px 40px 12px 15px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-select-trigger:hover {
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+
+        .search-select-trigger:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .select-arrow {
+            color: rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .select-arrow.open {
+            transform: rotate(180deg);
+        }
+
+        .select-dropdown {
+            position: absolute;
+            top: calc(100% + 5px);
+            left: 0;
+            right: 0;
+            background: #1a1a2e;
+            border-radius: 12px;
+            border: 2px solid rgba(102, 126, 234, 0.5);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            z-index: 1000;
+            display: none;
+            max-height: 350px;
+            overflow: hidden;
+            flex-direction: column;
+        }
+
+        .select-dropdown.open {
+            display: flex;
+        }
+
+        .search-input {
+            padding: 12px 15px;
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: #1a1a2e;
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .search-results {
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        .search-item {
+            padding: 12px 15px;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-item:hover {
+            background: rgba(102, 126, 234, 0.3);
+        }
+
+        .search-item:last-child {
+            border-bottom: none;
+        }
+
+        .search-item-name {
+            color: #fff;
+            font-size: 14px;
+            flex: 1;
+        }
+
+        .search-item-price {
+            color: #4ade80;
+            font-size: 14px;
+            font-weight: 600;
+            margin-left: 15px;
+        }
+
+        .quantity-cell {
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .price-cell {
+            color: #4ade80;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .amount-cell {
+            color: #fbbf24;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .total-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            margin-top: 30px;
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .total-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .total-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+        }
+
+        .total-value {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .total-value.highlight {
+            color: #fbbf24;
+            font-size: 28px;
+        }
+
+        .profit-info {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #fff;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .btn-success:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        .btn-warning:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        }
+
+        .btn-danger:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(239, 68, 68, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(107, 114, 128, 0.4);
+        }
+
+        .saved-configs {
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .saved-configs h3 {
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .saved-configs h3::before {
+            content: '📋';
+        }
+
+        .no-config {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.4);
+            padding: 30px;
+        }
+
+        .config-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+
+        .config-item-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .config-item-name {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .config-item-total {
+            color: #fbbf24;
+        }
+
+        .config-item-info {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header {
+                padding: 20px 15px;
+            }
+
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .dealer-info {
+                flex-direction: column;
+            }
+
+            .dealer-info input {
+                min-width: 100%;
+            }
+
+            .table-header {
+                grid-template-columns: 70px 1fr 60px 80px 100px;
+                font-size: 12px;
+                padding: 12px 10px;
+            }
+
+            .table-row {
+                grid-template-columns: 70px 1fr 60px 80px 100px;
+                padding: 12px 10px;
+                gap: 5px;
+            }
+
+            .type-cell {
+                font-size: 12px;
+            }
+
+            .search-select-trigger {
+                padding: 10px 30px 10px 10px;
+                font-size: 12px;
+            }
+
+            .quantity-cell, .price-cell, .amount-cell {
+                font-size: 12px;
+            }
+
+            .total-section {
+                padding: 20px 15px;
+            }
+
+            .total-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+
+            .total-label {
+                font-size: 14px;
+            }
+
+            .total-value {
+                font-size: 16px;
+            }
+
+            .total-value.highlight {
+                font-size: 22px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                min-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .table-header {
+                display: none;
+            }
+
+            .table-row {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                padding: 15px;
+                border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .table-row > div {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .table-row > div::before {
+                content: attr(data-label);
+                color: rgba(255, 255, 255, 0.6);
+                font-size: 12px;
+                margin-right: 10px;
+            }
+
+            .type-cell::before {
+                content: '类型';
+            }
+
+            .select-wrapper::before {
+                content: '硬件名称';
+            }
+
+            .quantity-cell::before {
+                content: '数量';
+            }
+
+            .price-cell::before {
+                content: '单价';
+            }
+
+            .amount-cell::before {
+                content: '金额';
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚡ 专业电脑配置单</h1>
+            <div class="dealer-info">
+                <input type="text" id="dealerName" placeholder="经销商名称">
+                <input type="text" id="dealerPhone" placeholder="经销商联系电话">
+            </div>
+        </div>
+
+        <div class="config-table">
+            <div class="table-header">
+                <div>类型</div>
+                <div>硬件名称</div>
+                <div>数量</div>
+                <div>单价</div>
+                <div>金额</div>
+            </div>
+
+            <div class="table-row">
+                <div class="type-cell" data-label="类型">CPU</div>
+                <div class="select-wrapper" data-label="硬件名称">
+                    <div class="search-select-trigger" data-category="cpu">
+                        <span class="selected-text">请选择CPU</span>
+                        <span class="select-arrow">▼</span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索产品...">
+                        <div class="search-results"></div>
+                    </div>
+                    <input type="hidden" class="selected-value" value="">
+                </div>
+                <div class="quantity-cell" data-label="数量">1</div>
+                <div class="price-cell" data-label="单价" data-price="0">¥0</div>
+                <div class="amount-cell" data-label="金额">¥0</div>
+            </div>
+
+            <div class="table-row">
+                <div class="type-cell" data-label="类型">主板</div>
+                <div class="select-wrapper" data-label="硬件名称">
+                    <div class="search-select-trigger" data-category="motherboard">
+                        <span class="selected-text">请选择主板</span>
+                        <span class="select-arrow">▼</span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索产品...">
+                        <div class="search-results"></div>
+                    </div>
+                    <input type="hidden" class="selected-value" value="">
+                </div>
+                <div class="quantity-cell" data-label="数量">1</div>
+                <div class="price-cell" data-label="单价" data-price="0">¥0</div>
+                <div class="amount-cell" data-label="金额">¥0</div>
+            </div>
+
+            <div class="table-row">
+                <div class="type-cell" data-label="类型">内存</div>
+                <div class="select-wrapper" data-label="硬件名称">
+                    <div class="search-select-trigger" data-category="memory">
+                        <span class="selected-text">请选择内存</span>
+                        <span class="select-arrow">▼</span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索产品...">
+                        <div class="search-results"></div>
+                    </div>
+                    <input type="hidden" class="selected-value" value="">
+                </div>
+                <div class="quantity-cell" data-label="数量">1</div>
+                <div class="price-cell" data-label="单价" data-price="0">¥0</div>
+                <div class="amount-cell" data-label="金额">¥0</div>
+            </div>
+
+            <div class="table-row">
+                <div class="type-cell" data-label="类型">硬盘1</div>
+                <div class="select-wrapper" data-label="硬件名称">
+                    <div class="search-select-trigger" data-category="harddrive1">
+                        <span class="selected-text">请选择硬盘</span>
+                        <span class="select-arrow">▼</span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索产品...">
+                        <div class="search-results"></div>
+                    </div>
+                    <input type="hidden" class="selected-value" value="">
+                </div>
+                <div class="quantity-cell" data-label="数量">1</div>
+                <div class="price-cell" data-label="单价" data-price="0">¥0</div>
+                <div class="amount-cell" data-label="金额">¥0</div>
+            </div>
+
+            <div class="table-row">
+                <div class="type-cell" data-label="类型">硬盘2</div>
+                <div class="select-wrapper" data-label="硬件名称">
+                    <div class="search-select-trigger" data-category="harddrive2">
+                        <span class="selected-text">请选择硬盘（可选）</span>
+                        <span class="select-arrow">▼</span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索产品...">
+                        <div class="search-results"></div>
+                    </div>
+                    <input type="hidden" class="selected-value" value="">
+                </div>
+                <div class="quantity-cell" data-label="数量">1</div>
+                <div class="price-cell" data-label="单价" data-price="0">¥0</div>
+                <div class="amount-cell" data-label="金额">¥0</div>
+            </div>
+
+            <div class="table-row">
+                <div class="type-cell" data-label="类型">电源</div>
+                <div class="select-wrapper" data-label="硬件名称">
+                    <div class="search-select-trigger" data-category="power">
+                        <span class="selected-text">请选择电源</span>
+                        <span class="select-arrow">▼</span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索产品...">
+                        <div class="search-results"></div>
+                    </div>
+                    <input type="hidden" class="selected-value" value="">
+                </div>
+                <div class="quantity-cell" data-label="数量">1</div>
+                <div class="price-cell" data-label="单价" data-price="0">¥0</div>
+                <div class="amount-cell" data-label="金额">¥0</div>
+            </div>
+
+            <div class="table-row">
+                <div class="type-cell" data-label="类型">机箱</div>
+                <div class="select-wrapper" data-label="硬件名称">
+                    <div class="search-select-trigger" data-category="case">
+                        <span class="selected-text">请选择机箱</span>
+                        <span class="select-arrow">▼</span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索产品...">
+                        <div class="search-results"></div>
+                    </div>
+                    <input type="hidden" class="selected-value" value="">
+                </div>
+                <div class="quantity-cell" data-label="数量">1</div>
+                <div class="price-cell" data-label="单价" data-price="0">¥0</div>
+                <div class="amount-cell" data-label="金额">¥0</div>
+            </div>
+
+            <div class="table-row">
+                <div class="type-cell" data-label="类型">显卡</div>
+                <div class="select-wrapper" data-label="硬件名称">
+                    <div class="search-select-trigger" data-category="gpu">
+                        <span class="selected-text">请选择显卡（可选）</span>
+                        <span class="select-arrow">▼</span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索产品...">
+                        <div class="search-results"></div>
+                    </div>
+                    <input type="hidden" class="selected-value" value="">
+                </div>
+                <div class="quantity-cell" data-label="数量">1</div>
+                <div class="price-cell" data-label="单价" data-price="0">¥0</div>
+                <div class="amount-cell" data-label="金额">¥0</div>
+            </div>
+
+            <div class="table-row">
+                <div class="type-cell" data-label="类型">显示器</div>
+                <div class="select-wrapper" data-label="硬件名称">
+                    <div class="search-select-trigger" data-category="monitor">
+                        <span class="selected-text">请选择显示器（可选）</span>
+                        <span class="select-arrow">▼</span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="hidden" class="selected-value" value="">
+                        <input type="text" class="search-input" placeholder="搜索产品...">
+                        <div class="search-results"></div>
+                    </div>
+                </div>
+                <div class="quantity-cell" data-label="数量">1</div>
+                <div class="price-cell" data-label="单价" data-price="0">¥0</div>
+                <div class="amount-cell" data-label="金额">¥0</div>
+            </div>
+
+            <div class="table-row">
+                <div class="type-cell" data-label="类型">CPU风扇</div>
+                <div class="select-wrapper" data-label="硬件名称">
+                    <div class="search-select-trigger" data-category="cpuFan">
+                        <span class="selected-text">请选择CPU风扇（可选）</span>
+                        <span class="select-arrow">▼</span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索产品...">
+                        <div class="search-results"></div>
+                    </div>
+                    <input type="hidden" class="selected-value" value="">
+                </div>
+                <div class="quantity-cell" data-label="数量">1</div>
+                <div class="price-cell" data-label="单价" data-price="0">¥0</div>
+                <div class="amount-cell" data-label="金额">¥0</div>
+            </div>
+
+            <div class="table-row">
+                <div class="type-cell" data-label="类型">机箱风扇</div>
+                <div class="select-wrapper" data-label="硬件名称">
+                    <div class="search-select-trigger" data-category="caseFan">
+                        <span class="selected-text">请选择机箱风扇（可选）</span>
+                        <span class="select-arrow">▼</span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索产品...">
+                        <div class="search-results"></div>
+                    </div>
+                    <input type="hidden" class="selected-value" value="">
+                </div>
+                <div class="quantity-cell" data-label="数量">1</div>
+                <div class="price-cell" data-label="单价" data-price="0">¥0</div>
+                <div class="amount-cell" data-label="金额">¥0</div>
+            </div>
+
+            <div class="table-row">
+                <div class="type-cell" data-label="类型">键盘</div>
+                <div class="select-wrapper" data-label="硬件名称">
+                    <div class="search-select-trigger" data-category="keyboard">
+                        <span class="selected-text">请选择键盘（可选）</span>
+                        <span class="select-arrow">▼</span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索产品...">
+                        <div class="search-results"></div>
+                    </div>
+                    <input type="hidden" class="selected-value" value="">
+                </div>
+                <div class="quantity-cell" data-label="数量">1</div>
+                <div class="price-cell" data-label="单价" data-price="0">¥0</div>
+                <div class="amount-cell" data-label="金额">¥0</div>
+            </div>
+
+            <div class="table-row">
+                <div class="type-cell" data-label="类型">鼠标</div>
+                <div class="select-wrapper" data-label="硬件名称">
+                    <div class="search-select-trigger" data-category="mouse">
+                        <span class="selected-text">请选择鼠标（可选）</span>
+                        <span class="select-arrow">▼</span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索产品...">
+                        <div class="search-results"></div>
+                    </div>
+                    <input type="hidden" class="selected-value" value="">
+                </div>
+                <div class="quantity-cell" data-label="数量">1</div>
+                <div class="price-cell" data-label="单价" data-price="0">¥0</div>
+                <div class="amount-cell" data-label="金额">¥0</div>
+            </div>
+
+            <div class="table-row">
+                <div class="type-cell" data-label="类型">音响</div>
+                <div class="select-wrapper" data-label="硬件名称">
+                    <div class="search-select-trigger" data-category="speaker">
+                        <span class="selected-text">请选择音响（可选）</span>
+                        <span class="select-arrow">▼</span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索产品...">
+                        <div class="search-results"></div>
+                    </div>
+                    <input type="hidden" class="selected-value" value="">
+                </div>
+                <div class="quantity-cell" data-label="数量">1</div>
+                <div class="price-cell" data-label="单价" data-price="0">¥0</div>
+                <div class="amount-cell" data-label="金额">¥0</div>
+            </div>
+
+            <div class="table-row">
+                <div class="type-cell" data-label="类型">其它</div>
+                <div class="select-wrapper" data-label="硬件名称">
+                    <div class="search-select-trigger" data-category="other">
+                        <span class="selected-text">请选择其它配件（可选）</span>
+                        <span class="select-arrow">▼</span>
+                    </div>
+                    <div class="select-dropdown">
+                        <input type="text" class="search-input" placeholder="搜索产品...">
+                        <div class="search-results"></div>
+                    </div>
+                    <input type="hidden" class="selected-value" value="">
+                </div>
+                <div class="quantity-cell" data-label="数量">1</div>
+                <div class="price-cell" data-label="单价" data-price="0">¥0</div>
+                <div class="amount-cell" data-label="金额">¥0</div>
+            </div>
+        </div>
+
+        <div class="total-section">
+            <div class="total-row">
+                <span class="total-label">产品金额总计：</span>
+                <span class="total-value" id="subtotal">¥0</span>
+            </div>
+            <div class="total-row">
+                <span class="total-label">利润：</span>
+                <span class="total-value" id="profit">¥0</span>
+            </div>
+            <div class="total-row">
+                <span class="total-label">优惠价：</span>
+                <input type="number" id="discount" placeholder="优惠金额" oninput="updateTotal()" style="width: 150px; padding: 8px 15px; border: 2px solid rgba(255,255,255,0.2); border-radius: 8px; background: rgba(255,255,255,0.1); color: #fff; font-size: 16px; outline: none;">
+            </div>
+            <div class="total-row">
+                <span class="total-label">应付金额：</span>
+                <span class="total-value highlight" id="total">¥0</span>
+            </div>
+            <div class="profit-info">
+                利润计算规则：产品金额总计 × 10%，若不足 ¥400 则按 ¥400 计算（CPU、主板、内存、硬盘1、电源、机箱全部选择后才显示合计）
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button class="btn btn-secondary" onclick="clearAll()">清除缓存</button>
+            <button class="btn btn-success" onclick="retailScreenshot()">零售截图</button>
+            <button class="btn btn-primary" onclick="wholesaleScreenshot()">同行截图</button>
+            <button class="btn btn-warning" onclick="saveConfig()">保存配置</button>
+        </div>
+
+        <div class="saved-configs">
+            <h3>已保存的配置</h3>
+            <div id="savedConfigsList" class="no-config">暂无保存的配置</div>
+        </div>
+    </div>
+
+    <script>
+        const products = {
+            cpu: [
+                { name: 'Intel Core i9-14900K', price: 4299 },
+                { name: 'Intel Core i7-14700K', price: 3299 },
+                { name: 'Intel Core i5-14600K', price: 2499 },
+                { name: 'AMD Ryzen 9 7950X', price: 4199 },
+                { name: 'AMD Ryzen 7 7800X3D', price: 2999 },
+                { name: 'AMD Ryzen 5 7600X', price: 1699 },
+                { name: 'Intel Core i3-14100F', price: 799 },
+                { name: 'AMD Ryzen 5 5600', price: 899 }
+            ],
+            motherboard: [
+                { name: '华硕 ROG MAXIMUS Z790 HERO', price: 4999 },
+                { name: '微星 MEG Z790 ACE', price: 4299 },
+                { name: '华硕 TUF GAMING Z790-PLUS', price: 2299 },
+                { name: '技嘉 B760M DS3H', price: 699 },
+                { name: '微星 MAG B650 TOMAHAWK WIFI', price: 1599 },
+                { name: '华硕 ROG CROSSHAIR X670E HERO', price: 5999 },
+                { name: '华擎 B660M-HDV', price: 499 },
+                { name: '映泰 B550M-SILVER', price: 599 }
+            ],
+            memory: [
+                { name: '芝奇 Trident Z5 RGB DDR5 32GB', price: 1699 },
+                { name: '金士顿 FURY Beast DDR5 16GB', price: 699 },
+                { name: '海盗船 Vengeance DDR5 32GB', price: 1599 },
+                { name: '威刚 XPG龙耀 D50 DDR4 16GB', price: 399 },
+                { name: '三星 DDR4 8GB 2666', price: 199 },
+                { name: '金士顿 DDR4 16GB 3200', price: 349 },
+                { name: '芝奇 DDR4 32GB 3600', price: 799 },
+                { name: '英睿达 DDR5 16GB 4800', price: 599 }
+            ],
+            harddrive1: [
+                { name: '三星 990 PRO 2TB', price: 1299 },
+                { name: '西数 SN850X 1TB', price: 699 },
+                { name: '金士顿 KC3000 2TB', price: 1199 },
+                { name: '英睿达 P3 Plus 1TB', price: 449 },
+                { name: '希捷 FireCuda 530 2TB', price: 1099 },
+                { name: '三星 980 PRO 1TB', price: 599 },
+                { name: '西数 WD Blue SN570 500GB', price: 299 },
+                { name: '金士顿 A400 1TB', price: 249 }
+            ],
+            harddrive2: [
+                { name: '三星 990 PRO 4TB', price: 2499 },
+                { name: '西数 SN850X 2TB', price: 1299 },
+                { name: '希捷 BarraCuda 4TB', price: 599 },
+                { name: '西部数据 Elements 2TB', price: 399 },
+                { name: '东芝 P300 3TB', price: 449 },
+                { name: '三星 870 EVO 2TB', price: 899 },
+                { name: 'WD Black 2TB', price: 799 },
+                { name: '无', price: 0 }
+            ],
+            power: [
+                { name: '海盗船 RM1000x', price: 1199 },
+                { name: '海韵 FOCUS GX-850', price: 899 },
+                { name: '长城 G7 750W', price: 599 },
+                { name: '航嘉 MVP K650', price: 449 },
+                { name: '振华 LEADEX G 650W', price: 699 },
+                { name: '酷冷至尊 MWE 550W', price: 349 },
+                { name: '金河田 GF600W', price: 299 },
+                { name: '先马 金牌500W', price: 249 }
+            ],
+            case: [
+                { name: '华硕 ROG Hyperion', price: 3999 },
+                { name: '联力 O11 Dynamic EVO', price: 1299 },
+                { name: '追风者 P600S', price: 999 },
+                { name: '恩杰 H7 Flow', price: 799 },
+                { name: '追风者 PHANTEKS P400A', price: 499 },
+                { name: '先马 趣造I\'m', price: 299 },
+                { name: '航嘉 GX580H', price: 249 },
+                { name: '金河田 预见N17', price: 199 }
+            ],
+            gpu: [
+                { name: 'NVIDIA RTX 4090', price: 14999 },
+                { name: 'NVIDIA RTX 4080 SUPER', price: 9499 },
+                { name: 'NVIDIA RTX 4070 SUPER', price: 6499 },
+                { name: 'NVIDIA RTX 4060 Ti', price: 3199 },
+                { name: 'AMD RX 7900 XTX', price: 7999 },
+                { name: 'AMD RX 7800 XT', price: 4299 },
+                { name: 'NVIDIA RTX 3060', price: 2499 },
+                { name: '无', price: 0 }
+            ],
+            monitor: [
+                { name: '华硕 ROG PG32UQX', price: 12999 },
+                { name: 'LG 27GP950-B', price: 4999 },
+                { name: '戴尔 U2723QE', price: 3999 },
+                { name: 'AOC Q27G2S/D', price: 1599 },
+                { name: 'HKC TG32C2U', price: 2499 },
+                { name: '优派 VX2780-2K-PRO', price: 1299 },
+                { name: '小米 27英寸 2K', price: 1499 },
+                { name: '无', price: 0 }
+            ],
+            cpuFan: [
+                { name: '猫头鹰 NH-D15', price: 699 },
+                { name: '九州风神 AK620', price: 399 },
+                { name: '利民 AK120 SE', price: 129 },
+                { name: '酷冷至尊 ML240R', price: 499 },
+                { name: '华硕 ROG RYUJIN III', price: 2999 },
+                { name: '追风者 PH-TC14PE', price: 299 },
+                { name: '超频三 东海X7', price: 199 },
+                { name: '无', price: 0 }
+            ],
+            caseFan: [
+                { name: '利民 TL-C12 PRO', price: 69 },
+                { name: '追风者 SK120', price: 59 },
+                { name: '九州风神 MF120 GT', price: 79 },
+                { name: '联力 UNI FAN SL120', price: 129 },
+                { name: '海盗船 LL120 RGB', price: 169 },
+                { name: '酷冷至尊 MF140 HALO', price: 99 },
+                { name: '先马 冰风', price: 39 },
+                { name: '无', price: 0 }
+            ],
+            keyboard: [
+                { name: '华硕 ROG Azoth', price: 2499 },
+                { name: '雷蛇 BlackWidow V4', price: 1499 },
+                { name: '樱桃 MX 3.0S', price: 899 },
+                { name: '罗技 G915 TKL', price: 1599 },
+                { name: 'ikbc W210', price: 499 },
+                { name: '达尔优 A87', price: 399 },
+                { name: '雷柏 V500PRO', price: 149 },
+                { name: '无', price: 0 }
+            ],
+            mouse: [
+                { name: '罗技 GPW 3', price: 1299 },
+                { name: '雷蛇 DeathAdder V3', price: 899 },
+                { name: '华硕 ROG Gladius III', price: 699 },
+                { name: '赛睿 Sensei Ten', price: 599 },
+                { name: '雷柏 VT950', price: 399 },
+                { name: '达尔优 EM915', price: 199 },
+                { name: '罗技 G102', price: 129 },
+                { name: '无', price: 0 }
+            ],
+            speaker: [
+                { name: '漫步者 R1700BT', price: 399 },
+                { name: '惠威 D1080MKII', price: 699 },
+                { name: '罗技 Z623', price: 899 },
+                { name: 'JBL PS3500', price: 599 },
+                { name: '飞利浦 SPA5300', price: 299 },
+                { name: '创新 T100', price: 349 },
+                { name: '小米 小爱音箱 Pro', price: 299 },
+                { name: '无', price: 0 }
+            ],
+            other: [
+                { name: '机箱灯带 RGB', price: 99 },
+                { name: '理线包套装', price: 49 },
+                { name: '显示器支架', price: 299 },
+                { name: 'USB集线器', price: 79 },
+                { name: '硬盘托架', price: 39 },
+                { name: '防尘网套装', price: 29 },
+                { name: '定制水冷管', price: 199 },
+                { name: '无', price: 0 }
+            ]
+        };
+
+        function initSearchSelects() {
+            document.querySelectorAll('.search-select-trigger').forEach(trigger => {
+                const category = trigger.dataset.category;
+                const wrapper = trigger.closest('.select-wrapper');
+                const dropdown = wrapper.querySelector('.select-dropdown');
+                const searchInput = wrapper.querySelector('.search-input');
+                const results = wrapper.querySelector('.search-results');
+                const selectedValue = wrapper.querySelector('.selected-value');
+                
+                renderResults(results, category, '');
+                
+                trigger.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    closeAllDropdowns();
+                    dropdown.classList.toggle('open');
+                    trigger.querySelector('.select-arrow').classList.toggle('open');
+                    if (dropdown.classList.contains('open')) {
+                        searchInput.focus();
+                    }
+                });
+                
+                searchInput.addEventListener('input', () => {
+                    const query = searchInput.value.toLowerCase();
+                    renderResults(results, category, query);
+                });
+                
+                document.addEventListener('click', (e) => {
+                    if (!wrapper.contains(e.target)) {
+                        dropdown.classList.remove('open');
+                        trigger.querySelector('.select-arrow').classList.remove('open');
+                    }
+                });
+            });
+        }
+
+        function renderResults(resultsContainer, category, query) {
+            const categoryProducts = products[category] || [];
+            const filtered = categoryProducts.filter(p => 
+                p.name.toLowerCase().includes(query)
+            );
+            
+            resultsContainer.innerHTML = filtered.map(product => `
+                <div class="search-item" data-price="${product.price || 0}" data-name="${product.name}">
+                    <span class="search-item-name">${product.name}</span>
+                    <span class="search-item-price">${product.price ? '¥' + product.price : '-'}</span>
+                </div>
+            `).join('');
+            
+            resultsContainer.querySelectorAll('.search-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const price = item.dataset.price;
+                    const name = item.dataset.name;
+                    const wrapper = resultsContainer.closest('.select-wrapper');
+                    const trigger = wrapper.querySelector('.search-select-trigger');
+                    const dropdown = wrapper.querySelector('.select-dropdown');
+                    const selectedValue = wrapper.querySelector('.selected-value');
+                    
+                    trigger.querySelector('.selected-text').textContent = name;
+                    selectedValue.value = price;
+                    
+                    dropdown.classList.remove('open');
+                    trigger.querySelector('.select-arrow').classList.remove('open');
+                    
+                    updateRowPrice(wrapper, price);
+                });
+            });
+        }
+
+        function closeAllDropdowns() {
+            document.querySelectorAll('.select-dropdown').forEach(dropdown => {
+                dropdown.classList.remove('open');
+            });
+            document.querySelectorAll('.select-arrow').forEach(arrow => {
+                arrow.classList.remove('open');
+            });
+        }
+
+        function updateRowPrice(wrapper, price) {
+            const row = wrapper.closest('.table-row');
+            const priceCell = row.querySelector('.price-cell');
+            const amountCell = row.querySelector('.amount-cell');
+            const priceValue = parseInt(price) || 0;
+            
+            priceCell.dataset.price = priceValue;
+            priceCell.textContent = priceValue > 0 ? '¥' + priceValue : '¥0';
+            amountCell.textContent = priceValue > 0 ? '¥' + priceValue : '¥0';
+            
+            updateTotal();
+        }
+
+        function updateTotal() {
+            const requiredCategories = ['cpu', 'motherboard', 'memory', 'harddrive1', 'power', 'case'];
+            const allRequiredSelected = requiredCategories.every(category => {
+                const wrapper = document.querySelector(`.select-wrapper [data-category="${category}"]`).closest('.select-wrapper');
+                const value = wrapper.querySelector('.selected-value').value;
+                return value && value !== '0' && value !== '';
+            });
+
+            if (!allRequiredSelected) {
+                document.getElementById('subtotal').textContent = '¥0';
+                document.getElementById('profit').textContent = '¥0';
+                document.getElementById('total').textContent = '¥0';
+                return;
+            }
+
+            const rows = document.querySelectorAll('.table-row');
+            let subtotal = 0;
+            
+            rows.forEach(row => {
+                const priceCell = row.querySelector('.price-cell');
+                subtotal += parseInt(priceCell.dataset.price) || 0;
+            });
+
+            const profit = Math.max(Math.floor(subtotal * 0.1), 400);
+            const discount = parseInt(document.getElementById('discount').value) || 0;
+            const total = subtotal + profit - discount;
+
+            document.getElementById('subtotal').textContent = '¥' + subtotal;
+            document.getElementById('profit').textContent = '¥' + profit;
+            document.getElementById('total').textContent = '¥' + Math.max(total, 0);
+        }
+
+        function clearAll() {
+            document.querySelectorAll('.select-wrapper').forEach(wrapper => {
+                const trigger = wrapper.querySelector('.search-select-trigger');
+                const selectedValue = wrapper.querySelector('.selected-value');
+                const row = wrapper.closest('.table-row');
+                const priceCell = row.querySelector('.price-cell');
+                const amountCell = row.querySelector('.amount-cell');
+                
+                const category = trigger.dataset.category;
+                const firstOption = products[category]?.[0];
+                trigger.querySelector('.selected-text').textContent = 
+                    category === 'cpu' ? '请选择CPU' :
+                    category === 'motherboard' ? '请选择主板' :
+                    category === 'memory' ? '请选择内存' :
+                    category === 'harddrive1' ? '请选择硬盘' :
+                    category === 'harddrive2' ? '请选择硬盘（可选）' :
+                    category === 'power' ? '请选择电源' :
+                    category === 'case' ? '请选择机箱' :
+                    category === 'gpu' ? '请选择显卡（可选）' :
+                    category === 'monitor' ? '请选择显示器（可选）' :
+                    category === 'cpuFan' ? '请选择CPU风扇（可选）' :
+                    category === 'caseFan' ? '请选择机箱风扇（可选）' :
+                    category === 'keyboard' ? '请选择键盘（可选）' :
+                    category === 'mouse' ? '请选择鼠标（可选）' :
+                    category === 'speaker' ? '请选择音响（可选）' : '请选择其它配件（可选）';
+                
+                selectedValue.value = '';
+                priceCell.dataset.price = '0';
+                priceCell.textContent = '¥0';
+                amountCell.textContent = '¥0';
+            });
+            document.getElementById('discount').value = '';
+            updateTotal();
+            document.getElementById('dealerName').value = '';
+            document.getElementById('dealerPhone').value = '';
+        }
+
+        function retailScreenshot() {
+            alert('零售截图功能已准备就绪！（实际项目中可集成截图API）');
+        }
+
+        function wholesaleScreenshot() {
+            alert('同行截图功能已准备就绪！（实际项目中可集成截图API）');
+        }
+
+        function saveConfig() {
+            const config = {
+                dealerName: document.getElementById('dealerName').value,
+                dealerPhone: document.getElementById('dealerPhone').value,
+                discount: document.getElementById('discount').value,
+                items: [],
+                total: document.getElementById('total').textContent,
+                savedAt: new Date().toLocaleString('zh-CN')
+            };
+
+            document.querySelectorAll('.table-row').forEach(row => {
+                const type = row.querySelector('.type-cell').textContent;
+                const wrapper = row.querySelector('.select-wrapper');
+                const trigger = wrapper.querySelector('.search-select-trigger');
+                const price = row.querySelector('.price-cell').dataset.price;
+                config.items.push({
+                    type,
+                    name: trigger.querySelector('.selected-text').textContent,
+                    price
+                });
+            });
+
+            const savedConfigs = JSON.parse(localStorage.getItem('pcConfigs') || '[]');
+            savedConfigs.push(config);
+            localStorage.setItem('pcConfigs', JSON.stringify(savedConfigs));
+            
+            alert('配置已保存！');
+            loadSavedConfigs();
+        }
+
+        function loadSavedConfigs() {
+            const savedConfigs = JSON.parse(localStorage.getItem('pcConfigs') || '[]');
+            const list = document.getElementById('savedConfigsList');
+            
+            if (savedConfigs.length === 0) {
+                list.innerHTML = '<div class="no-config">暂无保存的配置</div>';
+                return;
+            }
+
+            list.innerHTML = savedConfigs.map((config, index) => `
+                <div class="config-item">
+                    <div class="config-item-header">
+                        <span class="config-item-name">配置 ${index + 1}</span>
+                        <span class="config-item-total">${config.total}</span>
+                    </div>
+                    <div class="config-item-info">
+                        ${config.dealerName || '无经销商'} | ${config.dealerPhone || '无联系电话'} | ${config.savedAt}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        initSearchSelects();
+        loadSavedConfigs();
+    </script>
+</body>
+</html>
