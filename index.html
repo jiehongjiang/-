@@ -109,7 +109,7 @@
 
         .table-header {
             display: grid;
-            grid-template-columns: 70px 1fr 60px;
+            grid-template-columns: 54px minmax(0, 1fr) 44px;
             background: linear-gradient(90deg, #00d2ff 0%, #3a7bd5 50%, #667eea 100%);
             padding: 15px 10px;
             font-weight: 600;
@@ -128,9 +128,9 @@
 
         .table-row {
             display: grid;
-            grid-template-columns: 70px 1fr 60px;
-            min-height: 64px;
-            padding: 10px 10px;
+            grid-template-columns: 54px minmax(0, 1fr) 44px;
+            min-height: 46px;
+            padding: 4px 10px;
             border-bottom: 1px solid rgba(255,255,255,0.05);
             align-items: center;
             transition: all 0.3s ease;
@@ -150,29 +150,30 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            min-height: 52px;
-            height: 52px;
-            padding: 0 14px;
+            min-height: 42px;
+            height: 42px;
+            padding: 0 12px;
             border-radius: 14px;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 700;
-            letter-spacing: 0.5px;
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.25);
+            letter-spacing: 0.4px;
+            box-shadow: 0 5px 18px rgba(102, 126, 234, 0.2);
             position: relative;
         }
 
-        .table-row.required .type-badge::after {
-            content: '必选';
+        .table-row.required .type-badge {
+            padding-left: 18px;
+        }
+
+        .table-row.required .type-badge::before {
+            content: '';
             position: absolute;
-            top: -8px;
-            right: -8px;
-            background: rgba(255, 84, 145, 0.95);
-            color: white;
-            font-size: 10px;
-            font-weight: 700;
-            padding: 3px 8px;
+            left: 0;
+            top: 10px;
+            bottom: 10px;
+            width: 4px;
+            background: linear-gradient(180deg, #ffb86c 0%, #ff6cdb 100%);
             border-radius: 999px;
-            box-shadow: 0 0 14px rgba(255, 84, 145, 0.3);
         }
 
         .searchable-select {
@@ -184,15 +185,15 @@
 
         .select-trigger {
             width: 100%;
-            height: 52px;
-            padding: 0 50px 0 18px;
-            background: rgba(255,255,255,0.09);
-            border: 2px solid rgba(255,255,255,0.18);
+            height: 34px;
+            padding: 0 40px 0 12px;
+            background: rgba(255,255,255,0.08);
+            border: 2px solid rgba(255,255,255,0.16);
             border-radius: 14px;
             color: rgba(255,255,255,0.95);
-            font-size: 15px;
+            font-size: 14px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -202,16 +203,16 @@
         }
 
         .quantity-input {
-            width: 60px;
-            height: 52px;
-            padding: 0 12px;
+            width: 48px;
+            height: 34px;
+            padding: 0 10px;
             background: rgba(255,255,255,0.08);
             border: 2px solid rgba(255,255,255,0.15);
             border-radius: 14px;
             color: white;
-            font-size: 15px;
+            font-size: 14px;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
             appearance: none;
             -moz-appearance: textfield;
         }
@@ -331,20 +332,6 @@
             background: rgba(102, 126, 234, 0.4);
         }
 
-        .quantity-input {
-            width: 60px;
-            padding: 10px 8px;
-            background: rgba(255,255,255,0.08);
-            border: 2px solid rgba(255,255,255,0.15);
-            border-radius: 12px;
-            color: white;
-            font-size: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-            appearance: none;
-            -moz-appearance: textfield;
-        }
-
         .quantity-input::-webkit-outer-spin-button,
         .quantity-input::-webkit-inner-spin-button {
             -webkit-appearance: none;
@@ -460,27 +447,15 @@
         }
 
         .btn-screenshot {
-            background: linear-gradient(135deg, #ff00ff 0%, #2be4ff 45%, #00ff95 100%);
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             color: white;
-            box-shadow: 0 0 30px rgba(255, 0, 255, 0.35), 0 0 18px rgba(0, 229, 255, 0.2);
-            border: 1px solid rgba(255,255,255,0.25);
-            text-shadow: 0 0 12px rgba(255,255,255,0.4);
+            box-shadow: 0 8px 25px rgba(240, 147, 251, 0.4);
         }
 
         .btn-screenshot:hover {
-            box-shadow: 0 0 45px rgba(255, 0, 255, 0.45), 0 0 26px rgba(0, 229, 255, 0.3);
-            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(240, 147, 251, 0.5);
         }
 
-        .btn-wholesale {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            color: white;
-            box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
-        }
-
-        .btn-wholesale:hover {
-            box-shadow: 0 12px 35px rgba(79, 172, 254, 0.5);
-        }
 
         .btn-save {
             background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
@@ -575,23 +550,26 @@
             }
 
             .table-header {
-                grid-template-columns: 60px 1fr 50px;
+                grid-template-columns: 50px minmax(0, 1fr) 40px;
                 font-size: 12px;
-                padding: 12px 8px;
-            }
-
-            .table-row {
-                grid-template-columns: 60px 1fr 50px;
                 padding: 10px 8px;
             }
 
+            .table-row {
+                grid-template-columns: 50px minmax(0, 1fr) 40px;
+                padding: 5px 8px;
+            }
+
             .type-badge {
-                padding: 6px 8px;
-                font-size: 10px;
+                min-height: 30px;
+                height: 30px;
+                padding: 0 8px;
+                font-size: 11px;
             }
 
             .select-trigger {
-                padding: 10px 35px 10px 10px;
+                height: 32px;
+                padding: 0 30px 0 10px;
                 font-size: 13px;
             }
             
@@ -787,21 +765,6 @@
                 <input type="number" class="quantity-input" value="1" min="1" data-field="cpuFan">
             </div>
 
-            <div class="table-row" data-category="fan">
-                <div class="type-badge">风扇</div>
-                <div class="searchable-select" data-field="fan">
-                    <div class="select-trigger">
-                        <span>请选择风扇</span>
-                        <span class="select-arrow"></span>
-                    </div>
-                    <div class="select-dropdown">
-                        <input type="text" class="search-input" placeholder="搜索风扇...">
-                        <div class="select-options"></div>
-                    </div>
-                </div>
-                <input type="number" class="quantity-input" value="1" min="1" data-field="fan">
-            </div>
-
             <div class="table-row" data-category="caseFan">
                 <div class="type-badge">机箱风扇</div>
                 <div class="searchable-select" data-field="caseFan">
@@ -817,34 +780,19 @@
                 <input type="number" class="quantity-input" value="1" min="1" data-field="caseFan">
             </div>
 
-            <div class="table-row" data-category="keyboard">
-                <div class="type-badge">键盘</div>
-                <div class="searchable-select" data-field="keyboard">
+            <div class="table-row" data-category="keymouse">
+                <div class="type-badge">键鼠</div>
+                <div class="searchable-select" data-field="keymouse">
                     <div class="select-trigger">
-                        <span>请选择键盘</span>
+                        <span>请选择键鼠套装</span>
                         <span class="select-arrow"></span>
                     </div>
                     <div class="select-dropdown">
-                        <input type="text" class="search-input" placeholder="搜索键盘...">
+                        <input type="text" class="search-input" placeholder="搜索键鼠...">
                         <div class="select-options"></div>
                     </div>
                 </div>
-                <input type="number" class="quantity-input" value="1" min="1" data-field="keyboard">
-            </div>
-
-            <div class="table-row" data-category="mouse">
-                <div class="type-badge">鼠标</div>
-                <div class="searchable-select" data-field="mouse">
-                    <div class="select-trigger">
-                        <span>请选择鼠标</span>
-                        <span class="select-arrow"></span>
-                    </div>
-                    <div class="select-dropdown">
-                        <input type="text" class="search-input" placeholder="搜索鼠标...">
-                        <div class="select-options"></div>
-                    </div>
-                </div>
-                <input type="number" class="quantity-input" value="1" min="1" data-field="mouse">
+                <input type="number" class="quantity-input" value="1" min="1" data-field="keymouse">
             </div>
 
             <div class="table-row" data-category="speaker">
@@ -945,12 +893,6 @@
                 { id: 'hd2-4', name: '西部数据WD Blue 2TB HDD', price: 399 },
                 { id: 'hd2-5', name: '东芝P300 3TB HDD', price: 349 }
             ],
-            harddisk3: [
-                { id: 'hd3-1', name: '三星990 PRO 4TB', price: 2999 },
-                { id: 'hd3-2', name: '西部数据SN850X 4TB', price: 2499 },
-                { id: 'hd3-3', name: '希捷IronWolf 8TB NAS', price: 1299 },
-                { id: 'hd3-4', name: '西部数据Red Plus 6TB', price: 899 }
-            ],
             power: [
                 { id: 'pwr-1', name: '海盗船RM750x', price: 799 },
                 { id: 'pwr-2', name: '海韵FOCUS GX-850', price: 899 },
@@ -990,28 +932,16 @@
                 { id: 'cf-4', name: '酷冷至尊ML360R', price: 599 },
                 { id: 'cf-5', name: '追风者TC12DX', price: 199 }
             ],
-            fan: [
-                { id: 'fan-1', name: '猫头鹰NF-F12', price: 129 },
-                { id: 'fan-2', name: '追风者F140MP', price: 99 },
-                { id: 'fan-3', name: '利民C12C', price: 49 },
-                { id: 'fan-4', name: '酷冷至尊MF120 Halo', price: 69 }
-            ],
             caseFan: [
                 { id: 'cfan-1', name: '联力积木风扇SL120', price: 199 },
                 { id: 'cfan-2', name: '追风者SK PWM', price: 89 },
                 { id: 'cfan-3', name: '利民TL-C12S', price: 59 }
             ],
-            keyboard: [
-                { id: 'kb-1', name: '雷蛇黑寡妇V4', price: 1299 },
-                { id: 'kb-2', name: '罗技G915 TKL', price: 1499 },
-                { id: 'kb-3', name: '樱桃MX 3.0S', price: 699 },
-                { id: 'kb-4', name: '达尔优A87', price: 399 }
-            ],
-            mouse: [
-                { id: 'mouse-1', name: '罗技G502 HERO', price: 399 },
-                { id: 'mouse-2', name: '雷蛇炼狱蝰蛇V3', price: 499 },
-                { id: 'mouse-3', name: '赛睿Sensei Ten', price: 349 },
-                { id: 'mouse-4', name: '卓威EC2-C', price: 329 }
+            keymouse: [
+                { id: 'kbm-1', name: '雷蛇黑寡妇V4 + 罗技G502 HERO', price: 1599 },
+                { id: 'kbm-2', name: '罗技G915 TKL + 雷蛇炼狱蝰蛇V3', price: 1999 },
+                { id: 'kbm-3', name: '樱桃MX 3.0S + 赛睿Sensei Ten', price: 999 },
+                { id: 'kbm-4', name: '达尔优A87 + 卓威EC2-C', price: 679 }
             ],
             speaker: [
                 { id: 'spk-1', name: '漫步者R1700BT', price: 399 },
@@ -1041,37 +971,10 @@
                 const searchInput = select.querySelector('.search-input');
                 const optionsContainer = select.querySelector('.select-options');
                 
-                function renderOptions(filter = '') {
-                    optionsContainer.innerHTML = '';
-                    const filtered = products[field].filter(p => 
-                        p.name.toLowerCase().includes(filter.toLowerCase())
-                    );
-                    
-                    if (filtered.length === 0) {
-                        const noResult = document.createElement('div');
-                        noResult.className = 'select-option';
-                        noResult.textContent = '没有找到匹配的产品';
-                        noResult.style.color = '#f5576c';
-                        optionsContainer.appendChild(noResult);
-                        return;
-                    }
-                    
-                    filtered.forEach(product => {
-                        const option = document.createElement('div');
-                        option.className = 'select-option';
-                        if (selectedProducts[field]?.id === product.id) {
-                            option.classList.add('selected');
-                        }
-                        option.innerHTML = `<span>${product.name}</span><span style="color: #00ff88;">¥${product.price}</span>`;
-                        option.addEventListener('click', () => selectProduct(field, product));
-                        optionsContainer.appendChild(option);
-                    });
-                }
-                
-                renderOptions();
+                renderOptionsForField(field, optionsContainer);
                 
                 searchInput.addEventListener('input', (e) => {
-                    renderOptions(e.target.value);
+                    renderOptionsForField(field, optionsContainer, e.target.value);
                 });
                 
                 trigger.addEventListener('click', (e) => {
@@ -1081,7 +984,7 @@
             });
             
             document.addEventListener('click', (e) => {
-                if (!e.target.closest('.searchable-select')) {
+                if (!e.target.closest('.searchable-select') && !e.target.closest('.select-dropdown')) {
                     closeAllDropdowns();
                 }
             });
@@ -1135,9 +1038,20 @@
             dropdown.style.top = (rect.bottom + 10) + 'px';
         }
 
-        function renderOptionsForField(field, container) {
+        function renderOptionsForField(field, container, filter = '') {
             container.innerHTML = '';
-            const filtered = products[field];
+            const filtered = products[field].filter(p => 
+                p.name.toLowerCase().includes(filter.toLowerCase())
+            );
+            
+            if (filtered.length === 0) {
+                const noResult = document.createElement('div');
+                noResult.className = 'select-option';
+                noResult.textContent = '没有找到匹配的产品';
+                noResult.style.color = '#f5576c';
+                container.appendChild(noResult);
+                return;
+            }
             
             filtered.forEach(product => {
                 const option = document.createElement('div');
@@ -1145,7 +1059,7 @@
                 if (selectedProducts[field]?.id === product.id) {
                     option.classList.add('selected');
                 }
-                option.innerHTML = `<span>${product.name}</span><span style="color: #00ff88;">¥${product.price}</span>`;
+                option.textContent = product.name;
                 option.addEventListener('click', () => selectProduct(field, product));
                 container.appendChild(option);
             });
@@ -1221,16 +1135,13 @@
                 memory: '内存',
                 harddisk1: '硬盘1',
                 harddisk2: '硬盘2',
-                harddisk3: '硬盘3',
                 power: '电源',
                 case: '机箱',
                 gpu: '显卡',
                 monitor: '显示器',
                 cpuFan: 'CPU风扇',
-                fan: '风扇',
                 caseFan: '机箱风扇',
-                keyboard: '键盘',
-                mouse: '鼠标',
+                keymouse: '键鼠',
                 speaker: '音响',
                 other: '其它配件'
             };
@@ -1283,7 +1194,9 @@
             const config = saved[index];
             
             Object.keys(config.selected).forEach(field => {
-                selectProduct(field, config.selected[field]);
+                if (document.querySelector(`.searchable-select[data-field="${field}"]`)) {
+                    selectProduct(field, config.selected[field]);
+                }
             });
             
             calculateTotal();
